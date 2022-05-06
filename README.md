@@ -10,3 +10,4 @@
 
 1. [Move Zeroes](https://leetcode.com/problems/move-zeroes/)
    - [풀이](https://github.com/shindoyeon/algorithm_study/blob/master/leetcode/moveZeroes.cpp)
+   - 스왑으로도 해결할 수 있다
