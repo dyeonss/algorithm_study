@@ -11,3 +11,6 @@
 1. [Move Zeroes](https://leetcode.com/problems/move-zeroes/)
    - [풀이](https://github.com/shindoyeon/algorithm_study/blob/master/leetcode/moveZeroes.cpp)
    - 스왑으로도 해결할 수 있다
+2. [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/)
+   - [풀이](https://github.com/shindoyeon/algorithm_study/blob/master/leetcode/pivotIndex.cpp)
+   - sling 방식 (https://leetcode.com/problems/minimum-size-subarray-sum/ 문제도 풀어볼 것) 
