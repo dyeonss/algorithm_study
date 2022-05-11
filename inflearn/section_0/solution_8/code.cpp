@@ -1,10 +1,9 @@
 /**
  * @file code.cpp
  * @author shindoyeon
- * @brief 모두의 약수
+ * @brief 모두의 약수(제한시간 1초)
  * @version 0.1
  * @date 2022-05-05
- * 
  * @copyright Copyright (c) 2022
  * 
  */
