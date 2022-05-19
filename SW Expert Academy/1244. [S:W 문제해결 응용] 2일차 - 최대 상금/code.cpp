@@ -24,6 +24,7 @@ void dfs(int index, int current)
         ans = max(ans, stoi(s));
         return;
     }
+    else{
     for(int i = index; i < s.size() - 1; i++)
     {
         for(int j = i + 1; j < s.size(); j++)
@@ -32,6 +33,7 @@ void dfs(int index, int current)
             dfs(i, current + 1);
             swap(s[i], s[j]);
         }
+    }
     }
 }
 
@@ -53,6 +55,6 @@ int main(void)
         dfs(0, 0);
         cout << "#" << i << " " << ans << endl;
     }
-    cout<<stoi("123")<<endl;
+
     return 0;
 }
