@@ -50,4 +50,7 @@
    - [풀이](https://github.com/shindoyeon/algorithm_study/blob/be9a0f9dc24435f01d3262e172bd62dd6d8efd3a/SW%20Expert%20Academy/1244.%20%5BS:W%20%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0%20%EC%9D%91%EC%9A%A9%5D%202%EC%9D%BC%EC%B0%A8%20-%20%EC%B5%9C%EB%8C%80%20%EC%83%81%EA%B8%88/code.cpp)
    -  아직 해결하지 못함, 다른 사람 풀이 참고할 것
 
+5. [13038. 교환학생](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=3&contestProbId=AXxNn6GaPW4DFASZ&categoryId=AXxNn6GaPW4DFASZ&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=CCPP&select-1=3&pageSize=10&pageIndex=1)
+   - [풀이](https://github.com/shindoyeon/algorithm_study/blob/26bd1aefe1b905804950cc75224635df5ffdb241/SW%20Expert%20Academy/13038.%20%EA%B5%90%ED%99%98%ED%95%99%EC%83%9D/code.cpp)
+   -  요일에 상관없이 시작할 수 있다. 각 인덱스 별로 강의가 열리는 지 체크해야 된다.
 
