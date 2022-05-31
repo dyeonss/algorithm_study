@@ -25,13 +25,13 @@ void dfs(int index, int current)
         return;
     }
     else{
-    for(int i = index; i < s.size() - 1; i++)
-    {
-        for(int j = i + 1; j < s.size(); j++)
+        for(int i = index; i < s.size() - 1; i++)
         {
-            swap(s[i], s[j]);
-            dfs(i, current + 1);
-            swap(s[i], s[j]);
+            for(int j = i + 1; j < s.size(); j++)
+            {
+                swap(s[i], s[j]);
+                dfs(i, current + 1);
+                swap(s[i], s[j]);
         }
     }
     }
@@ -51,7 +51,8 @@ int main(void)
         ans = 0;
         
         if(change > s.size())
-            change = s.size() - 1;
+            change = s.size();
+            ;
         dfs(0, 0);
         cout << "#" << i << " " << ans << endl;
     }
