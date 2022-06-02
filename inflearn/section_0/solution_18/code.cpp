@@ -13,7 +13,7 @@ int main(int argc, char* argv[]){
     freopen(argv[1], "rt", stdin);
 	freopen(argv[2], "w", stdout);
 
-    int n, cnt=0;
+    int n, max, cnt=0;
     int length[100];
     
     cin>>n;
@@ -22,16 +22,12 @@ int main(int argc, char* argv[]){
         cin>>length[i];
     }
 
-    for(int i=0;i<n-1;i++){
-        bool tall=true;
-        for(int j=i+1;j<n;j++){
-            if(length[j]>=length[i]){
-                tall=false;
-                break;
-            }
-        }
-        if(tall==true)
+    max=length[n-1];
+    for(int i=n-2;i>=0;i--){
+        if(length[i]>max){
+            max=length[i];
             cnt++;
+        }
     }
 
     cout<<cnt<<"\n";
