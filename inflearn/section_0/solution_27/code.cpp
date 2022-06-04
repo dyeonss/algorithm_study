@@ -17,7 +17,7 @@ int main(int argc, char* argv[]){
     int n, tmp, j,res=1;
 
     cin>>n;
-    vector<int> div(n+1);
+    vector<int> div(n+1,0);
 
     for(int i=2;i<=n;i++){
         tmp=i;
