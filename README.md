@@ -5,7 +5,7 @@
 
 # [Section_0](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/section_0)
    - 코드구현력 기르기
-# [sort] (https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort)
+# [sort](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort)
 1. [선택정렬]
    - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_31)
 2. [3등의 성적은]
