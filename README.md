@@ -3,9 +3,26 @@
 
 ## [인프런](https://www.inflearn.com/)
 
-1. [Section_0](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/section_0)
+# [Section_0](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/section_0)
    - 코드구현력 기르기
-
+# [sort] (https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort)
+1. [선택정렬]
+   - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_31)
+2. [3등의 성적은]
+   - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_32)
+3. [버블정렬]
+   - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_33)
+4. [Special Sort(구글인터뷰)]
+   - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_34)
+5. [삽입정렬]
+   - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_35)
+6. [Least Recently Used(카카오 캐시 문제 변형)]
+   - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_36)
+7. [Inversion Sequence]
+   - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_37)
+8. [두 배열 합치기]
+   - [풀이](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort/solution_39)
+   
 ## [leetcode](https://leetcode.com/)
 
 1. [Move Zeroes](https://leetcode.com/problems/move-zeroes/)
