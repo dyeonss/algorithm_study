@@ -3,7 +3,7 @@
 
 ## [인프런](https://www.inflearn.com/)
 
-# [Section_0](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/section_0)
+# [section_0](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/section_0)
    - 코드구현력 기르기
 # [sort](https://github.com/shindoyeon/algorithm_study/tree/master/inflearn/sort)
 1. [선택정렬]
