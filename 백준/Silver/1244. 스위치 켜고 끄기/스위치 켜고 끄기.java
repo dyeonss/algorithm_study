@@ -7,9 +7,6 @@ public class Main {
 	
 	static int sw [] = new int [101];
 	static int N;
-	static int student;
-	static int gender;
-	static int switchnum;
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder("");
@@ -18,24 +15,24 @@ public class Main {
 		N=Integer.parseInt(br.readLine());
 		
 		//스위치 상태 
-		StringTokenizer st=new StringTokenizer(br.readLine());
+		StringTokenizer st=new StringTokenizer(br.readLine()," ");
  		for (int i = 1; i <= N; i++) {
 			sw[i]=Integer.parseInt(st.nextToken());
 		}
  		//학생 수 
- 		student=Integer.parseInt(br.readLine());
+ 		int student=Integer.parseInt(br.readLine());
  		
  		
  		for (int i = 0; i < student; i++) {
- 			st=new StringTokenizer(br.readLine());
- 			gender=Integer.parseInt(st.nextToken());
- 			switchnum=Integer.parseInt(st.nextToken());
+ 			st=new StringTokenizer(br.readLine()," ");
+ 			int gender=Integer.parseInt(st.nextToken());
+ 			int switchnum=Integer.parseInt(st.nextToken());
  			//남학생 
 			if(gender==1) {
 				boy(switchnum,1);
 			}
 			//여학생 
-			else {
+			else if(gender==2){
 				sw[switchnum]^=1;
 				girl(switchnum,1);
 				
