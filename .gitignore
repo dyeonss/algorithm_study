@@ -3,3 +3,10 @@
 !*/
 .DS_Store
 *.sh
+
+#vscode
+*.txt
+*.plist
+USER=*
+tempCodeRunnerFile*
+VSCODE_VERBOSE_LOGGING*
