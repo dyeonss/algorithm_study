@@ -1,52 +1,47 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Solution {
-	static int n;
-	static int[][] snail;
+	static int[][] board;
 	static int[] dr = { 0, 1, 0, -1 };
 	static int[] dc = { 1, 0, -1, 0 };
 
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine());
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int T;
+		T = sc.nextInt();
 
 		for (int test_case = 1; test_case <= T; test_case++) {
-			n = Integer.parseInt(br.readLine());
-			snail = new int[n][n]; // 0초기화
+			int n = sc.nextInt();
+			int r = 0;
+			int c = 0;
+			int d = 0;
 
-			godfs(0, 0, 0, 1);
+			board = new int[n][n];
+			
+			for (int i = 1; i <= n * n; i++) {
+				board[r][c] = i;
+				int nr = r + dr[d];
+				int nc = c + dc[d];
+				if (nr < 0 || nr > n - 1 || nc < 0 || nc > n - 1 || board[nr][nc] != 0) {
+					d++;
 
+					if (d >= 4) {
+						d = d % 4;
+					}
+				}
+				r = r + dr[d];
+				c = c + dc[d];
+
+			}
 			System.out.println("#" + test_case);
+
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
-					System.out.print(snail[i][j] + " ");
+					System.out.print(board[i][j] + " ");
 				}
 				System.out.println();
 			}
 		}
+		sc.close();
 	}
-
-	private static void godfs(int r, int c, int d, int i) {
-		snail[r][c] = i;
-		if (i == n * n)
-			return;
-
-		int nr = r + dr[d];
-		int nc = c + dc[d];
-
-		if (!(check(nr, nc) && snail[nr][nc] == 0)) {
-			d = (d + 1) % 4;
-		}
-		r = r + dr[d];
-		c = c + dc[d];
-
-		godfs(r, c, d, i + 1);
-	}
-
-	private static boolean check(int r, int c) {
-
-		return r >= 0 && r < n && c >= 0 && c < n; // 범위 안에 있음
-	}
-
 }
