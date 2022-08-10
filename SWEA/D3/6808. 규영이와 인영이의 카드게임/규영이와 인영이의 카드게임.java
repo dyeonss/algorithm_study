@@ -18,7 +18,7 @@ public class Solution {
 		T = Integer.parseInt(br.readLine());
 
 		for (int test_case = 1; test_case <= T; test_case++) {
-			gycard=new ArrayList<>();
+			gycard=new ArrayList<>();	
 			iycard=new ArrayList<>();
 			visited=new boolean[18];
 			gywin=0;
