@@ -14,9 +14,8 @@ public class Main {
 		image = new int[N][N];
 		for (int i = 0; i < N; i++) {
 			String s = br.readLine();
-			char[] ch = s.toCharArray();
 			for (int j = 0; j < N; j++) {
-				image[i][j] = ch[j] - '0';
+				image[i][j] = s.charAt(j) - '0';
 			}
 		}
 
@@ -27,16 +26,13 @@ public class Main {
 	private static void cmp(int r, int c, int n) {
 		boolean check = true;
 		if (n == 1) {
-			if (image[r][c] == 1)
-				sb.append("1");
-			else
-				sb.append("0");
+			sb.append(image[r][c]);
 		} 
 		else {
 			int d = image[r][c];
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
-					if (image[r + i][c + j] != d) { // 만약 image에 0이 있으면 분할
+					if (image[r + i][c + j] != d) { // 만약 image에 첫 번째 원소값과 다른 값이 있다면 분할 
 						check = false;
 						break;
 					}
@@ -51,7 +47,7 @@ public class Main {
 				}
 				sb.append(")");
 			} else {
-				sb.append(d + "");
+				sb.append(d);
 			}
 		}
 	}
