@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class Solution {
 	static class Pos{
 		int x,y;
+
 		public Pos(int x, int y) {
 			this.x = x;
 			this.y = y;
@@ -33,7 +34,7 @@ public class Solution {
 			for (int i = 0; i < N; i++) {
 				nums[i]=i;
 			}
-			ArrayList<Integer> dist=new ArrayList<>();
+			int min=Integer.MAX_VALUE;
 			do {
 				int sum=0;
 				sum+=calc(office,list[nums[0]]);
@@ -41,10 +42,10 @@ public class Solution {
 					sum+=calc(list[nums[i]],list[nums[i-1]]);
 				}
 				sum+=calc(list[nums[N-1]],myhome);
-				dist.add(sum);
+				if(sum<min)	min=sum;
 			}while(np(N-1,nums));
 
-			System.out.println("#"+tc+" "+Collections.min(dist));
+			System.out.println("#"+tc+" "+min);
 		}
 	}
 	private static int calc(Pos from, Pos to) {
@@ -77,6 +78,7 @@ public class Solution {
 			i++;
 			k--;
 		}
+		
 		return true;
 	}
 }
