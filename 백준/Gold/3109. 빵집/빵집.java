@@ -29,8 +29,7 @@ public class Main {
 		
 		for (int i = 0; i < R; i++) {
 			stop=false;
-			if(!visited[i][0])
-				dfs(i,0);
+			dfs(i,0);
 		}
 		System.out.println(res);
 	}
@@ -57,5 +56,4 @@ public class Main {
 	private static boolean check(int r, int c) {
 		return (r>=0&&r<R&&c>=0&&c<C);
 	}
-
 }
