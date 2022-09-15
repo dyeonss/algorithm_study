@@ -30,9 +30,6 @@ public class Main {
     }
 
     private static void dfs(int[][] tmp, int cnt) {
-        if(cnt>3){
-            return;
-        }
         if(check(tmp)){
             min= Math.min(min,cnt);
             result=true;
@@ -70,19 +67,17 @@ public class Main {
         int s=n;
 
         while(true){
-            if(depth<H && tmp[depth][s]==0){   
-                depth++;
-            }
-            else if(tmp[depth][s]!=0){  
-                if(s-1>=0 && tmp[depth][s]==2){ 
-                    s--;
+            if(depth<H){   
+                if(tmp[depth][s]!=0){  
+                    if(s-1>=0 && tmp[depth][s]==2){ 
+                        s--;
+                    }
+                    else if(s+1<N && tmp[depth][s]==1) { 
+                        s++;
+                    }
                 }
-                else if(s+1<N && tmp[depth][s]==1) { 
-                    s++;
-                }
-                depth++;
+            depth++;
             }
-
             if(depth==H){
                 result=s;
                 break;
