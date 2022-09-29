@@ -21,7 +21,6 @@ public class Main {
             dur[i]=Integer.parseInt(st.nextToken());
         }
 
-        int loc=0;
         while(check(dur)){
             //1. 벨트 한칸 회전
             int last=dur[2*N-1];
