@@ -68,8 +68,7 @@ public class Solution {
             nc=c+dc[dir];
 
             if(nr<0||nr>N-1||nc<0||nc>N-1){
-                if(dir==0||dir==1)  dir=(dir==0)?1:0;
-                if(dir==2||dir==3)  dir=(dir==2)?3:2;
+                dir=reversedir(dir);
                 nr=r;
                 nc=c;
                 score++;
@@ -91,6 +90,12 @@ public class Solution {
         }
     }
 
+    private static int reversedir(int d) {
+        if(d==0||d==1)  d=(d==0)?1:0;
+        if(d==2||d==3)  d=(d==2)?3:2;
+        return d;
+    }
+
     private static void findwhole(int r, int c, int value) {
         for (int i = 0; i < whole.size(); i++) {
             Pos p=whole.get(i);
@@ -106,32 +111,28 @@ public class Solution {
         switch (dir){
             case 0:
                 if(bidx==1||bidx==4||bidx==5){
-                    if(dir==0||dir==1)  dir=(dir==0)?1:0;
-                    if(dir==2||dir==3)  dir=(dir==2)?3:2;
+                    dir=reversedir(dir);
                 }
                 else if(bidx==2)    dir=3;
                 else if(bidx==3)    dir=2;
                 break;
             case 1:
                 if(bidx==2||bidx==3||bidx==5){
-                    if(dir==0||dir==1)  dir=(dir==0)?1:0;
-                    if(dir==2||dir==3)  dir=(dir==2)?3:2;
+                    dir=reversedir(dir);
                 }
                 else if(bidx==1)    dir=3;
                 else if(bidx==4)    dir=2;
                 break;
             case 2:
                 if(bidx==3||bidx==4||bidx==5){
-                    if(dir==0||dir==1)  dir=(dir==0)?1:0;
-                    if(dir==2||dir==3)  dir=(dir==2)?3:2;
+                    dir=reversedir(dir);
                 }
                 else if(bidx==1)    dir=0;
                 else if(bidx==2)    dir=1;
                 break;
             case 3:
                 if(bidx==1||bidx==2||bidx==5){
-                    if(dir==0||dir==1)  dir=(dir==0)?1:0;
-                    if(dir==2||dir==3)  dir=(dir==2)?3:2;
+                    dir=reversedir(dir);
                 }
                 else if(bidx==3)    dir=1;
                 else if(bidx==4)    dir=0;
