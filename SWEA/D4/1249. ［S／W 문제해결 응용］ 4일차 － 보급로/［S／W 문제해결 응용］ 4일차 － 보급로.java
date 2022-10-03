@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 public class Solution {
-    static int N,res;
+    static int N;
     static int [][] map;
     static boolean [][] visited;
     static int [][] total;
@@ -26,7 +26,6 @@ public class Solution {
 
         for (int tc = 1; tc <= T; tc++) {
             N=Integer.parseInt(br.readLine());
-            res=Integer.MAX_VALUE;
             visited=new boolean[N][N];
             map=new int [N][N];
             total=new int [N][N];
@@ -39,7 +38,7 @@ public class Solution {
                     map[i][j]=input.charAt(j)-'0';
             }
             findGoal();
-            sb.append("#").append(tc).append(" ").append(res).append("\n");
+            sb.append("#").append(tc).append(" ").append(total[N-1][N-1]).append("\n");
         }
         System.out.println(sb.toString());
     }
@@ -49,14 +48,12 @@ public class Solution {
         pq.clear();
         pq.offer(new Pos(0,0,0));
         visited[0][0]=true;
+        total[0][0]=0;
 
         while (!pq.isEmpty()){
             Pos p = pq.poll();
 
-            if(p.time>=res) continue;
-            if(p.r==N-1&&p.c==N-1){
-                res=Math.min(res, p.time);
-            }
+            if(p.time>=total[N-1][N-1]) continue;
 
             for (int i = 0; i < 4; i++) {
                 int nr=p.r+dr[i];
