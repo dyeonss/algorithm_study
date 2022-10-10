@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Solution {
+public class Solution{
     static int N, K, res;
     static int[][] map;
     static class Pos {
@@ -70,7 +70,7 @@ public class Solution {
                 int val= map[nr][nc];
                 map[nr][nc]=map[p.r][p.c]-1;
                 visited[nr][nc]=true;
-                dfs(new Pos(nr,nc),cnt+1,cutamount-K,map,visited);
+                dfs(new Pos(nr,nc),cnt+1,0,map,visited);
                 visited[nr][nc]=false;
                 map[nr][nc]=val;
             }
