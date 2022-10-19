@@ -10,13 +10,11 @@ class Solution {
             map.put(nums[i], map.getOrDefault(nums[i],0)+1);
         }
         
-        int i=0;
         int count=0;
         for(int key:map.keySet()){
-            if(i==n/2)  break;
+            if(count==n/2)  break;
             map.put(key,map.get(key)-1);
             count++;
-            i++;
         }
         answer=count;
         return answer;
