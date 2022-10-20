@@ -4,7 +4,7 @@ class Solution {
     public String solution(int[] numbers) {
         String answer = "";
         int divide = 0;
-        //Arrays.sort(numbers);
+        // Arrays.sort(numbers);
         Integer[] sorted = Arrays.stream(numbers).boxed().toArray(Integer[]::new);
 
         Arrays.sort(sorted, new Comparator<Integer>(){
@@ -17,19 +17,19 @@ class Solution {
                 int max = Math.max(alen,blen);
                 
                 for(int i=0;i<max;i++){
-                    int aidx = (i>=alen?i%alen:i);
-                    int bidx = (i>=blen?i%blen:i);
+                    int aidx = (i>=alen?i%alen:i);     
+                    int bidx = (i>=blen?i%blen:i); 
                     if(atos.charAt(aidx)!=btos.charAt(bidx))
-                        return btos.charAt(bidx)-atos.charAt(aidx);
+                        return -(atos.charAt(aidx)-btos.charAt(bidx));
                 }
-                return btos.charAt(blen-1)-atos.charAt(alen-1);
+                return -(atos.charAt(alen-1)-btos.charAt(blen-1));
             }
         });
         
         for(int num:sorted)
             answer+=String.valueOf(num);
 
-        if(answer.charAt(0)=='0')    answer="0";
+        if(answer.charAt(0)=='0')    answer="0";    
         
         return answer;
     }
