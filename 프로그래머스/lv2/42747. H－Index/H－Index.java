@@ -1,29 +1,17 @@
 import java.util.*;
-
 class Solution {
     public int solution(int[] citations) {
         int answer = 0;
-        int len=citations.length;
+        int n = citations.length;
         Arrays.sort(citations);
-        
-        for(int i=0;i<len;i++){
-            int h=citations[i];
-            int lt=i;   //나머지 논문 h번 이하
-            int gt=len-i;   //h번 이상
-            if(lt<=h&&gt>=h)    answer=h;
-            else{
-                for(int j=h-1;j>=0;j--){
-                    if(i>0?j>citations[i-1]:citations[i]>=j){
-                        lt=i;
-                        gt=len-i;
-                        if(lt<=j&&gt>=j){
-                            answer=j;
-                            break;
-                        }
-                    }
-                }
-                break;
+    
+        while(true){
+            int cnt=0;
+            for(int i=0;i<n;i++){
+                if(citations[i]>answer) cnt++;
             }
+            if(cnt<=answer)   break;
+            answer++;
         }
         return answer;
     }
