@@ -5,7 +5,7 @@ class Solution {
         for(int i=1;i<=count;i++){
             answer+=price*i;
         }
-        if(money-answer>=0) return 0;
-        return answer-money;
+        
+        return Math.max(answer-money,0);
     }
 }
