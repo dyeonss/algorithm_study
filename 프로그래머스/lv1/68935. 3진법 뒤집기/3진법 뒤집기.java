@@ -3,9 +3,8 @@ class Solution {
         int answer = 0;
         String str="";
         while(n>0){
-            int r = n%3;
+            str += n%3;
             n = n/3;
-            str+=String.valueOf(r);
         }
      
         int i=str.length()-1;
