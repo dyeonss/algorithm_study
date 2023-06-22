@@ -5,10 +5,9 @@ class Solution {
         String []number = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         
         for(int i=0;i<number.length;i++){
-            int index = s.indexOf(number[i]);
-            if(index!=-1){
+            if(s.contains(number[i]))
                 s=s.replace(number[i],String.valueOf(i));
-            }
+            
         }
         return Integer.valueOf(s);
     }
