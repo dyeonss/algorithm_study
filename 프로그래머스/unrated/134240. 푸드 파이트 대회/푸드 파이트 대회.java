@@ -5,10 +5,8 @@ class Solution {
       
         for(int i=1;i<food.length;i++){
             if(food[i]==1)  continue;
-            for(int j=0;j<food[i]/2;j++)
-                sb.append(String.valueOf(i));
+            sb.append(String.valueOf(i).repeat(food[i]/2));
         }
-        
         return sb.toString()+"0"+sb.reverse();
     }
 }
