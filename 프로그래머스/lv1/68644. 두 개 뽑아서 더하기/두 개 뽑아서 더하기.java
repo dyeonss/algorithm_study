@@ -1,7 +1,7 @@
 import java.util.*;
 class Solution {
-    public Integer[] solution(int[] numbers) {
-        Integer[] answer = {};
+    public int[] solution(int[] numbers) {
+        int[] answer = {};
         ArrayList<Integer> arr = new ArrayList<>();
         
         for(int i=0;i<numbers.length-1;i++){
@@ -12,7 +12,7 @@ class Solution {
         }
  
         Collections.sort(arr);
-        answer = arr.toArray(new Integer[arr.size()]);
+        answer = arr.stream().mapToInt(i->i).toArray();
         return answer;
     }
 }
