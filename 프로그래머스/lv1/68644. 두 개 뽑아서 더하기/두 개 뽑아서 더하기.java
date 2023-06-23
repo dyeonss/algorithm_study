@@ -1,7 +1,7 @@
 import java.util.*;
 class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = {};
+    public Integer[] solution(int[] numbers) {
+        Integer[] answer = {};
         ArrayList<Integer> arr = new ArrayList<>();
         
         for(int i=0;i<numbers.length-1;i++){
@@ -10,9 +10,9 @@ class Solution {
                     arr.add(numbers[i]+numbers[j]);
             }
         }
-        
+ 
         Collections.sort(arr);
-        answer = arr.stream().mapToInt(i->i).toArray();
+        answer = arr.toArray(new Integer[arr.size()]);
         return answer;
     }
 }
