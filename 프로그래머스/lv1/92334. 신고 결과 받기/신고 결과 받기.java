@@ -20,7 +20,6 @@ class Solution {
         
         for(String id: id_list){
             if(singo.get(id)>=k){
-                System.out.println(id);
                 for(int j=0;j<id_list.length;j++){
                     if(map.get(id_list[j]).indexOf(id)!=-1){
                         answer[j]++;
