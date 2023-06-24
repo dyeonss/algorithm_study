@@ -1,4 +1,5 @@
 import java.util.*;
+// import java.util.stream.*;
 class Solution {
     public int[] solution(String[] id_list, String[] report, int k) {
         int[] answer = new int [id_list.length];
@@ -9,6 +10,8 @@ class Solution {
             map.put(id, new ArrayList<String>());
             singo.put(id, 0);
         }
+        
+        report = Arrays.stream(report).distinct().toArray(String[]::new);
         
         for(int i=0;i<report.length;i++){
             String [] sarr = report[i].split(" ");
