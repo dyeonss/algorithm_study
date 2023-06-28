@@ -1,22 +1,16 @@
 import java.util.*;
 class Solution {
-    public static int sr=0, sc=0, nr=0, nc=0;
-    public static char[][] p;
-    public static int W,H;
     public int[] solution(String[] park, String[] routes) {
         int[] answer = new int[2];
-        p = new char[park.length][park[0].length()];
+        char[][] p = new char[park.length][park[0].length()];
         int sr=0,sc=0,nr=0,nc=0;
         int W=park[0].length(),H=park.length;
         
         for(int i=0;i<H;i++){
             p[i]=park[i].toCharArray();
-            for(int j=0;j<W;j++){
-                if(p[i][j]=='S'){
-                    sr=i;
-                    sc=j;
-                    break;
-                }
+            if(park[i].contains("S")){
+                sr=i;
+                sc=park[i].indexOf("S");
             }
         }
         
