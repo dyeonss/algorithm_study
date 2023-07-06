@@ -4,7 +4,7 @@ class Solution {
         int answer = 0;
         int idx=0;
         Stack<Integer> stack= new Stack<>();
-        
+
         for(int i=0;i<ingredient.length;i++){
             stack.push(ingredient[i]);  
             idx=stack.size()-1;
