@@ -1,14 +1,20 @@
 import java.util.*;
 class Solution {
     public int solution(int[] ingredient) {
-        String recipe = "1231";
         int answer = 0;
-        StringBuffer sb = new StringBuffer(Arrays.toString(ingredient).replaceAll("[^0-9]",""));
-          
-        while(sb.indexOf(recipe)>-1){
-            int idx = sb.indexOf(recipe);
-            answer++;
-            sb.delete(idx,idx+4);
+        int idx=0;
+        Stack<Integer> stack= new Stack<>();
+        
+        for(int i=0;i<ingredient.length;i++){
+            stack.push(ingredient[i]);  
+            idx=stack.size()-1;
+            if(stack.size()>=4&&(stack.get(idx)==1&&stack.get(idx-1)==3&&stack.get(idx-2)==2&&stack.get(idx-3)==1)){
+                stack.pop();
+                stack.pop();
+                stack.pop();
+                stack.pop();
+                answer++;
+            }
         }
         return answer;
     }
