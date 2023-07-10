@@ -24,13 +24,13 @@ class Solution {
             }
         }
         
-        if(arr.size()==0)   answer=new StringBuilder("-1");
+        if(arr.size()==0)   return "-1";
         else{
             for(int a:arr)
                 answer.append(a);
            
             if(answer.toString().charAt(0)=='0')
-                answer=new StringBuilder("0");
+                return "0";
         }
         
         return answer.toString();
