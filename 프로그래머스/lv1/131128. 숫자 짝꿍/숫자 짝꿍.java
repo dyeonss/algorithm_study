@@ -15,12 +15,7 @@ class Solution {
         ArrayList<Integer> arr = new ArrayList<>();
         for(int i=9;i>=0;i--){
             if(Xarr[i]>0&&Yarr[i]>0){
-                if(Xarr[i]<=Yarr[i]){
-                    for(int j=0;j<Xarr[i];j++)  arr.add(i);
-                }
-                else{
-                    for(int j=0;j<Yarr[i];j++)  arr.add(i);
-                }
+                for(int j=0;j<(Xarr[i]>Yarr[i]?Yarr[i]:Xarr[i]);j++)  arr.add(i);                    
             }
         }
         
