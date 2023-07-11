@@ -10,7 +10,7 @@ class Solution {
                     int n=board[j][moves[i]-1];
                     board[j][moves[i]-1]=0;
                     if(box.size()>0){
-                        if(n==box.get(box.size()-1)){
+                        if(n==box.peek()){
                             box.pop();
                             answer+=2;
                             break;
