@@ -11,7 +11,6 @@ class Solution {
                     board[j][moves[i]-1]=0;
                     if(box.size()>0){
                         if(n==box.get(box.size()-1)){
-                            System.out.println(n);
                             box.pop();
                             answer+=2;
                             break;
