@@ -2,6 +2,7 @@ import java.util.*;
 class Solution {
     public int[] solution(String s) {
         String[] sArr = s.substring(2,s.length()-2).split("},\\{");
+        int[] answer = new int[sArr.length];
         
         Arrays.sort(sArr, new Comparator<String>(){
             @Override
@@ -10,21 +11,17 @@ class Solution {
             }
         });
         
-        ArrayList<Integer> tmp = new ArrayList<>();
+        int i=0;
+        HashSet<Integer> set = new HashSet<>();
         for(String ss:sArr){
             String[] nums = ss.split(",");
             
             for(String n:nums){
-                if(!tmp.contains(Integer.valueOf(n))){
-                    tmp.add(Integer.valueOf(n));
-                }
+                if(set.add(Integer.valueOf(n)))
+                    answer[i++]=Integer.valueOf(n);
             }
         }
         
-        int[] answer = new int[tmp.size()];
-        for(int i=0;i<tmp.size();i++){
-            answer[i] = tmp.get(i);
-        }
         return answer;
     }
 }
