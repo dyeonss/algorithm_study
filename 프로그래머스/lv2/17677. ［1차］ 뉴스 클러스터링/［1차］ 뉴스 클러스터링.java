@@ -18,16 +18,16 @@ class Solution {
         ArrayList<String> inter = new ArrayList<>();
         ArrayList<String> union = new ArrayList<>();
         
-        for(String s : sArr1){
-          if(sArr2.remove(s)){
-            inter.add(s);
-          }
-          union.add(s);
-      }
-      
-      for(String s : sArr2){
-          union.add(s);
-      }
+    
+        for(String s:sArr1){
+            if(sArr2.contains(s)){
+                inter.add(s);
+                sArr2.remove(s);
+            }
+            union.add(s);
+        }
+        
+        for(String s:sArr2) union.add(s);
         
         if(union.size()==0) return 65536;
         return (int)(inter.size()*1.0/union.size()*1.0*65536.0);
