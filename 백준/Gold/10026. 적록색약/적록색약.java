@@ -2,107 +2,88 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.Queue;
 
-public class Main{
-	static class RGB{
-		int r,c;
-		char ch;
-		public RGB(int r, int c, char ch) {
-			this.r = r;
-			this.c = c;
-			this.ch = ch;
-		}
-	}
-	static int N;
-	static char [][] board;
-	static int orgbres, xrgbres;
-	static boolean [][] visited;
-	public static void main(String[] args) throws IOException {
-		BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
-		N=Integer.parseInt(br.readLine());
-		board=new char[N][N];
-		
-		for (int i = 0; i < N; i++) {
-			String s = br.readLine();
-			for (int j = 0; j < N; j++) {
-				board[i][j]=s.charAt(j);
-			}
-		}
-		
-		visited=new boolean[N][N];
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				if(!visited[i][j])
-					xrgb(i,j);
-			}
-		}
-		
-		visited=new boolean[N][N];
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				if(!visited[i][j])
-					orgb(i,j);
-			}
-		}
-		
-		System.out.println(xrgbres+" "+orgbres);
-	}
+public class Main {
+    public static char[][] paint;
+    public static boolean[][] visited;
+    public static int N;
+    public static int[] dr = {-1,1,0,0};    //상하좌우
+    public static int[] dc = {0,0,-1,1};
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N=Integer.parseInt(br.readLine());
+        paint = new char[N][N];
+        visited = new boolean[N][N];
+        int rgbCount = 0;
+        int rbCount = 0;
+        for (int i = 0; i < N; i++) {
+            String s = br.readLine();
+            paint[i]=s.toCharArray();
+        }
 
-	static int [] dr = {0,1,0,-1};
-	static int [] dc = {1,0,-1,0};
-	private static void xrgb(int r, int c) {
-		Queue<RGB> q=new LinkedList<>();
-		
-		q.offer(new RGB(r, c, board[r][c]));
-		visited[r][c]=true;
-		
-		while (!q.isEmpty()) {
-			RGB cur = q.poll();
+        for(int i=0;i<N;i++){
+            for (int j = 0; j < N; j++) {
+                if(!visited[i][j]){
+                    rgb(i,j);
+                    rgbCount++;
+                }
+            }
+        }
 
-			for (int i = 0; i < 4; i++) {
-				int nr = cur.r + dr[i];
-				int nc = cur.c + dc[i];
+        visited = new boolean[N][N];
 
-				if (check(nr, nc) && !visited[nr][nc] && (cur.ch == board[nr][nc])) {
-					visited[nr][nc] = true;
-					q.offer(new RGB(nr, nc, board[nr][nc]));
-				}
-			}
-		}
-		xrgbres++;
-	}
-	
-	private static void orgb(int r, int c) {
-		Queue<RGB> q=new LinkedList<>();
-		
-		q.offer(new RGB(r, c, board[r][c]));
-		visited[r][c]=true;
-		
-		while (!q.isEmpty()) {
-			RGB cur = q.poll();
+        for(int i=0;i<N;i++){
+            for (int j = 0; j < N; j++) {
+                if(!visited[i][j]){
+                    blindness(i,j);
+                    rbCount++;
+                }
+            }
+        }
 
-			for (int i = 0; i < 4; i++) {
-				int nr = cur.r + dr[i];
-				int nc = cur.c + dc[i];
-				
-				if (check(nr, nc) && !visited[nr][nc] && ((cur.ch == 'R'&&(board[nr][nc]=='R'||board[nr][nc]=='G')))) {
-					visited[nr][nc] = true;
-					q.offer(new RGB(nr, nc, board[nr][nc]));
-				}
-				if (check(nr, nc) && !visited[nr][nc] && ((cur.ch == 'G'&&(board[nr][nc]=='R'||board[nr][nc]=='G')))) {
-					visited[nr][nc] = true;
-					q.offer(new RGB(nr, nc, board[nr][nc]));
-				}
-				if (check(nr, nc) && !visited[nr][nc] && ((cur.ch == 'B'&&board[nr][nc]=='B'))) {
-					visited[nr][nc] = true;
-					q.offer(new RGB(nr, nc, board[nr][nc]));
-				}
-			}
-		}
-		orgbres++;
-	}
-	private static boolean check(int r, int c) {
-		return r>=0&&r<N&&c>=0&&c<N;
-	}
+        System.out.println(rgbCount+" "+rbCount);
+    }
+    public static void rgb(int r, int c){
+        LinkedList<int[]> q = new LinkedList<>();
+
+        q.offer(new int[]{r,c});
+        visited[r][c]=true;
+
+        while(!q.isEmpty()){
+            int[] arr = q.poll();
+            char ch = paint[arr[0]][arr[1]];
+
+
+            for(int k=0;k<4;k++) {
+                int nr = arr[0] + dr[k];
+                int nc = arr[1] + dc[k];
+                if (nr < 0 || nr > N - 1 || nc < 0 || nc > N - 1) continue;
+                if ((!visited[nr][nc]) && (paint[nr][nc] == ch)) {
+                    visited[nr][nc] = true;
+                    q.offer(new int[]{nr, nc});
+                }
+            }
+        }
+    }
+    public static void blindness(int r, int c){
+        LinkedList<int[]> q = new LinkedList<>();
+
+        q.offer(new int[]{r,c});
+        visited[r][c]=true;
+
+        while(!q.isEmpty()){
+            int[] arr = q.poll();
+            char ch = paint[arr[0]][arr[1]];
+
+            for(int k=0;k<4;k++) {
+                int nr = arr[0] + dr[k];
+                int nc = arr[1] + dc[k];
+                if (nr < 0 || nr > N - 1 || nc < 0 || nc > N - 1) continue;
+                if (!visited[nr][nc] && (((ch=='R'||ch=='G')&&(paint[nr][nc] == 'R'||paint[nr][nc] == 'G'))||ch==paint[nr][nc])) {
+                    visited[nr][nc] = true;
+                    q.offer(new int[]{nr, nc});
+                }
+            }
+        }
+    }
 }
