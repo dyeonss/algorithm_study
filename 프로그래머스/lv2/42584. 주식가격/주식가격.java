@@ -10,14 +10,13 @@ class Solution {
                 answer[i] = prices.length - i - 1;
             }
             else{
-                int idx = i;
-                for(int j = i+1;j < prices.length;j++){
+                int j = i+1;
+                for(;j < prices.length;j++){
                     if(prices[i] > prices[j]){
-                        idx = j;
                         break;
                     }
                 }
-                answer[i] = idx - i;
+                answer[i] = j - i;
             }
         }
 
