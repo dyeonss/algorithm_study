@@ -5,8 +5,6 @@ class Solution {
         Stack<Integer> stack = new Stack<>();
         
         for(int i=numbers.length-1;i>=0;i--){
-            if(stack.isEmpty())
-                answer[i]=-1;
             while(!stack.isEmpty()){
                 if(stack.peek()>numbers[i]){
                     answer[i]=stack.peek();
@@ -14,9 +12,10 @@ class Solution {
                 }
                 else{
                     stack.pop();
-                    answer[i]=-1;
                 }
             }
+            if(stack.isEmpty())
+                answer[i]=-1;
             stack.push(numbers[i]);
         }
         return answer;
