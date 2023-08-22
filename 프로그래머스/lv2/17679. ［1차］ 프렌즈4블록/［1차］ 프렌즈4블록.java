@@ -46,7 +46,6 @@ class Solution {
             
             for(int i=0;i<loc.size();i++){
                 int[] coor = loc.get(i);
-                // System.out.println(coor[0]+" "+coor[1]);
                 if(game[coor[0]][coor[1]]!=' '){
                     game[coor[0]][coor[1]]=' ';
                     answer++;
