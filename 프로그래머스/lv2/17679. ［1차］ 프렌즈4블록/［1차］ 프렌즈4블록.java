@@ -1,7 +1,5 @@
 import java.util.*;
 class Solution {
-    public int[] dr = {0,1,0};   //시계방향
-    public int[] dc = {1,0,-1};
     public int solution(int m, int n, String[] board) {
         int answer = 0;
         int size = board.length;
@@ -17,26 +15,12 @@ class Solution {
                 for(int j=0;j<n-1;j++){
                     if(game[i][j]!=' '){
                         char ch = game[i][j];
-                        boolean check = true;
-                        int nr = i;
-                        int nc = j;
-                        for(int k=0;k<3;k++){
-                            nr += dr[k];
-                            nc += dc[k];
-                            if(ch!=game[nr][nc]){
-                                check = false;
-                                break;
-                            }    
-                        }
-                        if(check){
+                        
+                        if(ch==game[i][j+1]&&ch==game[i+1][j+1]&&ch==game[i+1][j]){
                             loc.add(new int[]{i,j});  
-                            nr = i;
-                            nc = j;
-                            for(int k=0;k<3;k++){
-                                nr += dr[k];
-                                nc += dc[k];
-                                loc.add(new int[]{nr,nc});  
-                            }
+                            loc.add(new int[]{i,j+1});
+                            loc.add(new int[]{i+1,j+1});  
+                            loc.add(new int[]{i+1,j});
                         }
                     }
                 }
