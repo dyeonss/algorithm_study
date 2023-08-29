@@ -20,8 +20,8 @@ class Solution {
                     }
                 }
                 else{
-                    sb=new StringBuilder(sb.substring(1));
-                    sb=sb.insert(0,"10");
+                    sb.deleteCharAt(0);
+                    sb.insert(0,"10");
                 }
                 answer[i]=Long.parseLong(sb.toString(),2);
             }
