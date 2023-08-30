@@ -8,22 +8,15 @@ class Solution {
                 answer[i]=n+1;
             }
             else{
-                StringBuilder sb=new StringBuilder(Long.toBinaryString(n));
+                String str=Long.toBinaryString(n);
                 int cnt=0;
-                if(sb.toString().contains("01")){
-                    for(int j=sb.length();j>=2;j--){
-                        if(sb.substring(j-2,j).equals("01")){
-                            sb.setCharAt(j-2,'1');
-                            sb.setCharAt(j-1,'0');
-                            break;
-                        }
-                    }
-                }
-                else{
-                    sb.deleteCharAt(0);
-                    sb.insert(0,"10");
-                }
-                answer[i]=Long.parseLong(sb.toString(),2);
+                int idx = str.lastIndexOf("01");
+                if(idx!=-1)
+                    str = str.substring(0,idx)+"10"+str.substring(idx+2);
+                else
+                    str = "10"+str.substring(1);
+                
+                answer[i]=Long.parseLong(str,2);
             }
         }
         return answer;
