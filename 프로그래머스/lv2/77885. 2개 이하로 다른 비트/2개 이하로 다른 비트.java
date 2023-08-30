@@ -16,6 +16,12 @@ class Solution {
                 else
                     str = "10"+str.substring(1);
                 
+                    
+                
+                    
+                    
+                    
+                
                 answer[i]=Long.parseLong(str,2);
             }
         }
