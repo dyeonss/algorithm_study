@@ -1,10 +1,10 @@
 # [level 2] 쿼드압축 후 개수 세기 - 68936 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/68936) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/68936#) 
 
 ### 성능 요약
 
-메모리: 89.5 MB, 시간: 3.16 ms
+메모리: 99.3 MB, 시간: 3.40 ms
 
 ### 구분
 

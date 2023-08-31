@@ -8,8 +8,7 @@ class Solution {
     }
     public void zip(int[][] arr, int r, int c, int n){
         if(check(arr,r,c,n)){
-            if(arr[r][c]==0)    answer[0]++;
-            else    answer[1]++;
+            answer[arr[r][c]]++;
             return;
         }
         zip(arr,r,c,n/2);
