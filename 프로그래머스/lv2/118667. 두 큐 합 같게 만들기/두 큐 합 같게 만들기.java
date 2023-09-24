@@ -15,7 +15,7 @@ class Solution {
             q2.add(queue2[i]);
         }
         
-        while((sum1!=sum2)&&(answer<=(queue1.length+queue2.length)*2)){
+        while((sum1!=sum2)&&(answer<(queue1.length+queue2.length)*2)){
             if(sum1>sum2){
                 int n=q1.poll();
                 q2.add(n);
