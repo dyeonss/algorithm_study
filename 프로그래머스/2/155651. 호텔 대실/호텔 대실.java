@@ -1,8 +1,7 @@
 import java.util.*;
 class Solution {
     public int solution(String[][] book_time) {
-        int answer = 0;
-        ArrayList<String> arr = new ArrayList<>();
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         
         Arrays.sort(book_time,(t1,t2)->{
             String[] str1=t1[0].split(":");
@@ -12,26 +11,24 @@ class Solution {
             return start1-start2;
         });
         
-        arr.add(book_time[0][1]);
-        for(int i=1;i<book_time.length;i++){
-            boolean check=false;
-            for(int j=0;j<arr.size();j++){
-                String[] endTime=arr.get(j).split(":");
-                int end=Integer.valueOf(endTime[0])*60+Integer.valueOf(endTime[1])+10;
-                String[] startTime=book_time[i][0].split(":");
-                int start=Integer.valueOf(startTime[0])*60+Integer.valueOf(startTime[1]);
-                
-                if(start>=end){
-                    arr.set(j,book_time[i][1]);
-                    check=true;
-                    break;
-                }
+        for(int i=0;i<book_time.length;i++){
+            String[] s1=book_time[i][0].split(":");
+            String[] s2=book_time[i][1].split(":");
+            int start=Integer.valueOf(s1[0])*60+Integer.valueOf(s1[1]);
+            int end=Integer.valueOf(s2[0])*60+Integer.valueOf(s2[1]);
+            
+            if(pq.size()==0){
+                pq.offer(end);
+                continue;
             }
-            if(!check){
-                arr.add(book_time[i][1]);
-            }  
+            if(pq.peek()+10<=start){
+                pq.poll();
+                pq.offer(end);
+            }
+            else
+                pq.offer(end);
         }
         
-        return arr.size();
+        return pq.size();
     }
 }
