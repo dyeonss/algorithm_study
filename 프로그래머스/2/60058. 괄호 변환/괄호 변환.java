@@ -2,15 +2,13 @@ import java.util.*;
 class Solution {
     static StringBuilder answer=new StringBuilder();
     public String solution(String p) {
-        
         if(right_bracket(p))    return p;
         start(p);
         return answer.toString();
     }
     public void start(String w){
-        if(w.equals("")){
+        if(w.equals(""))
             return;
-        }
         
         String u="",v="";
         int l=0,r=0,idx=0;
