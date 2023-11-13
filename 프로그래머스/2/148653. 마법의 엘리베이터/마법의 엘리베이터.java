@@ -1,43 +1,28 @@
 class Solution {
     public int solution(int storey) {
         int answer = 0;
-        int tmp = storey;
         
-        String str=String.valueOf(storey);
-        int j=0;
-        for(int i=str.length()-1;i>=0;i--){
-            if(str.charAt(i)-'0'<5){
-                storey-=(str.charAt(i)-'0')*Math.pow(10,j++);
-                answer+=(str.charAt(i)-'0');
+        while(storey>0){
+            int remain=storey%10;
+            storey/=10;
+            
+            if(remain>5){
+                answer+=(10-remain);
+                storey++;
             }
-            else{
-                storey+=(10-(str.charAt(i)-'0'))*Math.pow(10,j++);
-                answer+=(10-(str.charAt(i)-'0'));
-                if(str.length()<String.valueOf(storey).length())    i++;
+            else if(remain<5){
+                answer+=remain;
             }
-            str=String.valueOf(storey);
+            else if(remain==5){
+                if(storey%10>=5){
+                    answer+=5;
+                    storey++;
+                }
+                else{
+                    answer+=5;
+                }
+            }
         }
-        
-        j=0; 
-        storey = tmp;
-        str=String.valueOf(storey);
-        int answer1 = 0;
-        for(int i=str.length()-1;i>=0;i--){
-            if(str.charAt(i)-'0'<=5){
-                storey-=(str.charAt(i)-'0')*Math.pow(10,j++);
-                answer1+=(str.charAt(i)-'0');
-            }
-            else{
-                storey+=(10-(str.charAt(i)-'0'))*Math.pow(10,j++);
-                answer1+=(10-(str.charAt(i)-'0'));
-                if(str.length()<String.valueOf(storey).length())    i++;
-            }
-            str=String.valueOf(storey);
-        }
-        
-        return Math.min(answer, answer1);
+        return answer;
     }
 }
-
-    
-    
