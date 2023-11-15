@@ -1,10 +1,9 @@
 import java.util.*;
 import java.util.regex.*;
 class Solution {
-    static HashMap<Integer,String> calc=new HashMap<>();
-    static long answer=0;
     public long solution(String expression) {
         String[][] prior={{"+","-","*"},{"+","*","-"},{"-","+","*"},{"-","*","+"},{"*","-","+"},{"*","+","-"}}; 
+        long answer=0;
         
         for(int i=0;i<6;i++){
             String str=expression;
