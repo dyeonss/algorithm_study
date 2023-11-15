@@ -1,42 +1,45 @@
 import java.util.*;
-import java.util.regex.*;
 class Solution {
     public long solution(String expression) {
-        String[][] prior={{"+","-","*"},{"+","*","-"},{"-","+","*"},{"-","*","+"},{"*","-","+"},{"*","+","-"}}; 
-        long answer=0;
+        long answer = 0;
+        int start=0;
+        ArrayList<Character> ops=new ArrayList<>();
+        ArrayList<Long> nums=new ArrayList<>();
+        String[] calc={"+-*","+*-","-+*","-*+","*+-","*-+"};
+        
+        for(int i=0;i<expression.length();i++){
+            if(expression.charAt(i)=='+'||expression.charAt(i)=='-'||expression.charAt(i)=='*'){
+                ops.add(expression.charAt(i));
+                nums.add(Long.valueOf(expression.substring(start,i)));
+                start=i+1;
+            }
+        }
+        nums.add(Long.valueOf(expression.substring(start)));
         
         for(int i=0;i<6;i++){
-            String str=expression;
-            for(int j=0;j<3;j++){
-                String c=prior[i][j];
-                
-                while(true){
-                    Pattern p=Pattern.compile("m*[0-9]+\\"+c+"m*[0-9]+");
-                    Matcher m=p.matcher(str);
-                    if(!m.find())   break;
-                    String s=m.group();
-                    String[] arr=s.split("\\"+c);
-                    Long result=0L;
-
-                    arr[0]=arr[0].replace("m","-");
-                    arr[1]=arr[1].replace("m","-");
-
-                    if(c.equals("+")){
-                        result=Long.valueOf(arr[0])+Long.valueOf(arr[1]);
-                    }
-                    else if(c.equals("-")){
-                        result=Long.valueOf(arr[0])-Long.valueOf(arr[1]);
-                    }
-                    else{
-                        result=Long.valueOf(arr[0])*Long.valueOf(arr[1]);
-                    }
-                    str=str.replace(s,result<0?"m"+String.valueOf(Math.abs(result)):String.valueOf(result));
+            ArrayList<Character> opsC=new ArrayList<>(ops);
+            ArrayList<Long> numsC=new ArrayList<>(nums);
+            for(char c:calc[i].toCharArray()){
+                for(int j=0;j<opsC.size();j++){
+                    if(c==opsC.get(j)){
+                        if(c=='+'){
+                            numsC.set(j,numsC.get(j)+numsC.get(j+1));
+                            numsC.remove(j+1);
+                        }else if(c=='-'){
+                            numsC.set(j,numsC.get(j)-numsC.get(j+1));
+                            numsC.remove(j+1);
+                        }else{
+                            numsC.set(j,numsC.get(j)*numsC.get(j+1));
+                            numsC.remove(j+1);
+                        }
+                        opsC.remove(j);
+                        j--;
                     }
                 }
-            str=str.replace("m","-");
-            answer=Math.max(Math.abs(Long.valueOf(str)),answer);
+            }
+            answer=Math.max(answer,Math.abs(numsC.get(0)));
         }
+        
         return answer;
     }
-    
 }
