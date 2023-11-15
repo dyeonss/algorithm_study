@@ -12,34 +12,34 @@ class Solution {
         }
         
         for(int i=0;i<queries.length;i++){
-            queries[i][0]-=1;
-            queries[i][1]-=1;
-            queries[i][2]-=1;
-            queries[i][3]-=1;
-            
-            int tmp=matrix[queries[i][0]][queries[i][1]];
+            int r1=queries[i][0]-1;
+            int c1=queries[i][1]-1;
+            int r2=queries[i][2]-1;
+            int c2=queries[i][3]-1;
+           
+            int tmp=matrix[r1][c1];
             int min=tmp;
-            for(int j=queries[i][0];j<queries[i][2];j++){
-                matrix[j][queries[i][1]]=matrix[j+1][queries[i][1]];
-                min=Math.min(min,matrix[j][queries[i][1]]);
+            for(int j=r1;j<r2;j++){
+                matrix[j][c1]=matrix[j+1][c1];
+                if(matrix[j][c1]<min)   min=matrix[j][c1];
             }
             
-            for(int j=queries[i][1];j<queries[i][3];j++){
-                matrix[queries[i][2]][j]=matrix[queries[i][2]][j+1];
-                min=Math.min(min,matrix[queries[i][2]][j]);
+            for(int j=c1;j<c2;j++){
+                matrix[r2][j]=matrix[r2][j+1];
+                if(matrix[r2][j]<min)   min=matrix[r2][j];
             }
             
-            for(int j=queries[i][2];j>queries[i][0];j--){
-                matrix[j][queries[i][3]]=matrix[j-1][queries[i][3]];
-                min=Math.min(min,matrix[j][queries[i][3]]);
+            for(int j=r2;j>r1;j--){
+                matrix[j][c2]=matrix[j-1][c2];
+                if(matrix[j][c2]<min)   min=matrix[j][c2];
             }
             
-            for(int j=queries[i][3];j>queries[i][1];j--){
-                matrix[queries[i][0]][j]=matrix[queries[i][0]][j-1];
-                min=Math.min(min,matrix[queries[i][0]][j]);
+            for(int j=c2;j>c1;j--){
+                matrix[r1][j]=matrix[r1][j-1];
+                if(matrix[r1][j]<min)   min=matrix[r1][j];
             }
             
-            matrix[queries[i][0]][queries[i][1]+1]=tmp;
+            matrix[r1][c1+1]=tmp;
             answer[i]=min;
         }
         return answer;
