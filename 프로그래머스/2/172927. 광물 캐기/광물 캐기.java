@@ -1,16 +1,13 @@
 import java.util.*;
 class Solution {
     public int solution(int[] picks, String[] minerals) {
-        int answer=0,sum=0;
+        int answer=0,sum=Arrays.stream(picks).sum();
         ArrayList<int[]> list=new ArrayList<>();
-        
         HashMap<String,int[]> mineral=new HashMap<String,int[]>();
         
         mineral.put("diamond",new int[]{1,1,1});
         mineral.put("iron",new int[]{5,1,1});
         mineral.put("stone",new int[]{25,5,1});
-        
-        for(int i=0;i<picks.length;i++) sum+=picks[i];
         
         for(int i=0;i<minerals.length;i+=5){
             if(i/5>=sum)    break;
