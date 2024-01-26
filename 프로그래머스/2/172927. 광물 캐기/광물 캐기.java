@@ -34,19 +34,18 @@ class Solution {
         list.sort((o1,o2)->o2[2]-o1[2]);
         
         for(int[] arr:list){
-            System.out.println(Arrays.toString(arr));
-            if(picks[0]>0){
-                picks[0]--;
-                answer+=arr[0];
-            }
-            else if(picks[1]>0){
-                picks[1]--;
-                answer+=arr[1];
-            }
-            else if(picks[2]>0){
-                picks[2]--;
-                answer+=arr[2];
-            }
+            int idx=-1;
+            if(picks[0]>0)
+                idx=0;
+            else if(picks[1]>0)
+                idx=1;
+            else if(picks[2]>0)
+                idx=2;
+            else    break;
+            
+            picks[idx]--;
+            answer+=arr[idx];
+            
         }
         return answer;
     }
