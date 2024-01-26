@@ -3,19 +3,12 @@ class Solution {
     public int solution(int[] picks, String[] minerals) {
         int answer=0,sum=0;
         ArrayList<int[]> list=new ArrayList<>();
-        HashMap<String,Integer> dia=new HashMap<String,Integer>();
-        HashMap<String,Integer> iron=new HashMap<String,Integer>();
-        HashMap<String,Integer> stn=new HashMap<String,Integer>();
         
-        dia.put("diamond",1);
-        dia.put("iron",1);
-        dia.put("stone",1);
-        iron.put("diamond",5);
-        iron.put("iron",1);
-        iron.put("stone",1);
-        stn.put("diamond",25);
-        stn.put("iron",5);
-        stn.put("stone",1);
+        HashMap<String,int[]> mineral=new HashMap<String,int[]>();
+        
+        mineral.put("diamond",new int[]{1,1,1});
+        mineral.put("iron",new int[]{5,1,1});
+        mineral.put("stone",new int[]{25,5,1});
         
         for(int i=0;i<picks.length;i++) sum+=picks[i];
         
@@ -24,9 +17,16 @@ class Solution {
             int dcnt=0,icnt=0,scnt=0;
            
             for(int j=i;(j<i+5&&j<minerals.length);j++){
-                dcnt+=dia.get(minerals[j]);
-                icnt+=iron.get(minerals[j]);
-                scnt+=stn.get(minerals[j]);
+                int idx=0;
+                switch(minerals[j]){
+                    case "diamond": idx=0;break;
+                    case "iron":    idx=1;break;
+                    case "stone":   idx=2;break;
+                }
+                
+                dcnt+=mineral.get("diamond")[idx];
+                icnt+=mineral.get("iron")[idx];
+                scnt+=mineral.get("stone")[idx];
             }
             list.add(new int[]{dcnt,icnt,scnt});
         }
@@ -45,7 +45,6 @@ class Solution {
             
             picks[idx]--;
             answer+=arr[idx];
-            
         }
         return answer;
     }
