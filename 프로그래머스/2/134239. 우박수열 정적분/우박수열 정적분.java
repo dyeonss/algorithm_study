@@ -13,7 +13,7 @@ class Solution {
         }
         
         for(int i=0;i<ranges.length;i++){
-            int a=ranges[i][0], b=list.size()-1-(-ranges[i][1]);
+            int a=ranges[i][0], b=list.size()-1+ranges[i][1];
             if(a>b){
                 answer[i]=-1.0;
                 continue;
