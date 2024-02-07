@@ -19,7 +19,7 @@ class Solution {
                 continue;
             }
             for(int j=a;j<b;j++){
-                answer[i]+=(list.get(j)+list.get(j+1))*1/2.0;    
+                answer[i]+=(list.get(j)+list.get(j+1))/2.0;    
             }
         }
         return answer;
