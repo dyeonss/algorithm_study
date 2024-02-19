@@ -11,9 +11,6 @@ class Solution {
             int n2=(int)Math.sqrt((long)r2*r2-(long)x*x);
             int n1=(int)Math.ceil(Math.sqrt((long)r1*r1-(long)x*x));
             
-            // System.out.println("n1, n2: "+n1+","+n2);
-            if(x>r1)
-                n1=0;
             if(n1==0)   cnt+=(n2-n1);
             else cnt+=(n2-n1+1);
         }
