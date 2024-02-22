@@ -26,16 +26,12 @@ class Solution {
         }
     }
     public void service(int[][] users,int[] emoticons){
-        int[] price=new int[emoticons.length];
         int join=0, total=0;
         ArrayList<Emoticon> list=new ArrayList<>();
         
-        for(int i=0;i<emoticons.length;i++){
+        for(int i=0;i<emoticons.length;i++)
             list.add(new Emoticon((int)(emoticons[i]*(100-sale[i])*0.01),sale[i]));
-            price[i]=(int)(emoticons[i]*(100-sale[i])*0.01);
-        }
-        list.sort((o1,o2)->-(o1.price-o2.price));
-    
+        
         for(int i=0;i<users.length;i++){
             int buy=0;
             for(int j=0;j<list.size();j++){
