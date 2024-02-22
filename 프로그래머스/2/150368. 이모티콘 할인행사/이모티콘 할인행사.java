@@ -1,12 +1,5 @@
 import java.util.*;
 class Solution {
-    public class Emoticon{
-        int price, rate;
-        Emoticon(int price, int rate){
-            this.price=price;
-            this.rate=rate;
-        }
-    }
     static int[] discount={10,20,30,40};
     static int[] sale;
     static int[] answer=new int[2];
@@ -27,22 +20,21 @@ class Solution {
     }
     public void service(int[][] users,int[] emoticons){
         int join=0, total=0;
-        ArrayList<Emoticon> list=new ArrayList<>();
+        int[] price=new int[emoticons.length];
         
         for(int i=0;i<emoticons.length;i++)
-            list.add(new Emoticon((int)(emoticons[i]*(100-sale[i])*0.01),sale[i]));
+            price[i]=(int)(emoticons[i]*(100-sale[i])*0.01);
         
         for(int i=0;i<users.length;i++){
             int buy=0;
-            for(int j=0;j<list.size();j++){
-                Emoticon e=list.get(j);
-                if(e.rate>=users[i][0]){
-                    if(buy+e.price>=users[i][1]){
+            for(int j=0;j<price.length;j++){
+                if(sale[j]>=users[i][0]){
+                    if(buy+price[j]>=users[i][1]){
                         join++;
                         buy=0;
                         break;
                     }
-                    buy+=e.price;
+                    buy+=price[j];
                 }
             }
             total+=buy;
