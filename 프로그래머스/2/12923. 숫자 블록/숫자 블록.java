@@ -4,9 +4,7 @@ class Solution {
         
         for(long i=begin;i<=end;i++){
             if(begin==1&&i-begin==0)  continue;
-            
-            
-            for(int j=2;j<=(int)Math.sqrt(i);j++){
+            for(int j=2;j<=(int)(Math.sqrt(i));j++){
                 if(i%j==0){
                     if(i/j>10000000){
                         answer[(int)(i-begin)]=j;
@@ -17,7 +15,6 @@ class Solution {
                     }
                 }  
             }    
-            
             
             if(answer[(int)(i-begin)]==0)  answer[(int)(i-begin)]=1;
         }
