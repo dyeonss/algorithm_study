@@ -11,49 +11,48 @@ class Solution {
     }
     public String[] solution(String[][] plans) {
         String[] answer = new String[plans.length];
-        ArrayList<Work> not=new ArrayList<>();
-        ArrayList<Work> worked=new ArrayList<>();
+        PriorityQueue<Work> not=new PriorityQueue<>((o1,o2)->o1.start-o2.start);
+        Stack<Work> worked=new Stack<>();
         int cnt=0,time=0;
         
         for(String[] p:plans){
             int start=Integer.valueOf(p[1].substring(0,2))*60+Integer.valueOf(p[1].substring(3));
-            not.add(new Work(p[0],start,Integer.valueOf(p[2])));
+            not.offer(new Work(p[0],start,Integer.valueOf(p[2])));
         }
         
-        not.sort((o1,o2)->o1.start-o2.start);
-        Work w=not.remove(0);
+        Work w=not.poll();
         time=w.start;
-        while(not.size()>0||worked.size()>0){
-            if(not.size()>0){
-                Work n=not.get(0);
+        while(!not.isEmpty()||worked.size()>0){
+            if(!not.isEmpty()){
+                Work n=not.peek();
                 if(time+w.playtime<n.start){
                     answer[cnt++]=w.name;
                     
                     if(worked.size()>0){
                         time=time+w.playtime;
-                        w=worked.remove(worked.size()-1);
+                        w=worked.pop();
                     }
                     else{
-                        w=not.remove(0);
+                        w=not.poll();
                         time=n.start;
                     }
                 }
                 else if(time+w.playtime==n.start){
                     answer[cnt++]=w.name;
                     time=n.start;
-                    w=not.remove(0);
+                    w=not.poll();
                 }
                 else if(time+w.playtime>n.start){
                     w.playtime-=(n.start-time);
                     time=n.start;
-                    worked.add(w);
-                    w=not.remove(0);
+                    worked.push(w);
+                    w=not.poll();
                 }
             }
             //멈춰둔 과제만 있는 경우
             else if(not.size()==0&&worked.size()>0){
                 answer[cnt++]=w.name;
-                w=worked.remove(worked.size()-1);
+                w=worked.pop();
             }
         }
         answer[cnt]=w.name;
