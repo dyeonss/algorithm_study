@@ -22,38 +22,37 @@ class Solution {
         
         Work w=not.poll();
         time=w.start;
-        while(!not.isEmpty()||worked.size()>0){
-            if(!not.isEmpty()){
-                Work n=not.peek();
-                if(time+w.playtime<n.start){
-                    answer[cnt++]=w.name;
-                    
-                    if(worked.size()>0){
-                        time=time+w.playtime;
-                        w=worked.pop();
-                    }
-                    else{
-                        w=not.poll();
-                        time=n.start;
-                    }
-                }
-                else if(time+w.playtime==n.start){
-                    answer[cnt++]=w.name;
-                    time=n.start;
-                    w=not.poll();
-                }
-                else if(time+w.playtime>n.start){
-                    w.playtime-=(n.start-time);
-                    time=n.start;
-                    worked.push(w);
-                    w=not.poll();
-                }
-            }
-            //멈춰둔 과제만 있는 경우
-            else if(not.size()==0&&worked.size()>0){
+        
+        while(!not.isEmpty()){
+            Work n=not.peek();
+            if(time+w.playtime<n.start){
                 answer[cnt++]=w.name;
-                w=worked.pop();
+
+                if(worked.size()>0){
+                    time=time+w.playtime;
+                    w=worked.pop();
+                }
+                else{
+                    w=not.poll();
+                    time=n.start;
+                }
             }
+            else if(time+w.playtime==n.start){
+                answer[cnt++]=w.name;
+                time=n.start;
+                w=not.poll();
+            }
+            else if(time+w.playtime>n.start){
+                w.playtime-=(n.start-time);
+                time=n.start;
+                worked.push(w);
+                w=not.poll();
+            }
+        }
+        
+        while(!worked.isEmpty()){
+            answer[cnt++]=w.name;
+            w=worked.pop();
         }
         answer[cnt]=w.name;
         return answer;
