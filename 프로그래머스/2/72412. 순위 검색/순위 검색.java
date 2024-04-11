@@ -17,7 +17,6 @@ class Solution {
             q=q.replace(" and ","");
             String[] arr=q.split(" ");
             answer[idx++]=map.containsKey(arr[0])?binarySearch(map.get(arr[0]),Integer.valueOf(arr[1])):0;
-           
         }  
         
         return answer;
