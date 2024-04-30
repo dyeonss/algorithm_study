@@ -8,8 +8,6 @@ class Solution {
         HashMap<Integer,Integer> map=new HashMap<>();
         
         for(int i=0;i<land[0].length;i++){
-            ArrayList<Integer> list=new ArrayList<>();
-            int tmp=0;
             for(int j=0;j<land.length;j++){
                 if(land[j][i]==1){
                     if(board[j][i]!=0)    continue;
