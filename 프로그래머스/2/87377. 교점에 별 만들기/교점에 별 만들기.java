@@ -14,10 +14,10 @@ class Solution {
                 if(xm!=0){
                     if(xj%xm==0&&yj%ym==0){
                         set.add((int)(xj/xm)+" "+(int)(yj/ym));
-                        xmin=(int)Math.min(xmin,(int)(xj/xm));
-                        xmax=(int)Math.max(xmax,(int)(xj/xm));
-                        ymin=(int)Math.min(ymin,(int)(yj/ym));
-                        ymax=(int)Math.max(ymax,(int)(yj/ym));
+                        xmin=Math.min(xmin,(int)(xj/xm));
+                        xmax=Math.max(xmax,(int)(xj/xm));
+                        ymin=Math.min(ymin,(int)(yj/ym));
+                        ymax=Math.max(ymax,(int)(yj/ym));
                     }
                 }  
             }
