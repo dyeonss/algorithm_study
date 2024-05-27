@@ -35,6 +35,12 @@ class Solution {
             char[] ch=answer[(ymax-Integer.valueOf(arr[1]))].toCharArray();
             ch[(Integer.valueOf(arr[0])-xmin)]='*';
             answer[(ymax-Integer.valueOf(arr[1]))]=String.valueOf(ch);
+            String str=answer[(ymax-Integer.valueOf(arr[1]))];
+            str=str.substring(0,(Integer.valueOf(arr[0])-xmin))+"*"+str.substring((Integer.valueOf(arr[0])-xmin)+1);
+            answer[(ymax-Integer.valueOf(arr[1]))]=str;
+            // System.out.println(str);
+            // System.out.println(answer[(ymax-Integer.valueOf(arr[1]))]);
+            // System.out.println();
         }
         return answer;
     }
