@@ -12,7 +12,6 @@ class Solution {
     public void dfs(int depth, String str, boolean[] visited, String[] data){
         if(depth==8){
             if(check(str, data)){
-                // System.out.println(str);
                 answer++;
             }
             return;
