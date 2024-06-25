@@ -42,7 +42,7 @@ class Solution {
         return answer;
     }
     public void findStick(int idx, List<ArrayList<Integer>> graph){
-        if(!visited[idx]&&graph.get(idx).size()==0&&in[idx]>0){
+        if(!visited[idx]&&((graph.get(idx).size()==0&&in[idx]>=1))){
             visited[idx]=true;
             answer[2]++;
         }
