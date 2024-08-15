@@ -20,44 +20,17 @@ class Solution {
             double nMinute=((sMinute+i)*0.1)%360.0;
             double nSecond=((sSecond+i)*6)%360.0;
                       
-            if((pHour>pSecond)&&(nHour<=((nSecond<pSecond)?nSecond+360:nSecond))){
-            //     if(h1==1&&m1==5&&s1==5){
-            //     System.out.println("시간: "+(sHour+i-1)+"초와 "+(sHour+i)+"초 사이");
-            //     System.out.println("1초전 시침: "+pHour+", 1초후 시침:"+nHour);
-            //     System.out.println("1초전 분침: "+pMinute+", 1초후 분침:"+nMinute);
-            //     System.out.println("1초전 초침: "+pSecond+", 1초후 초침:"+nSecond+"\n");
-            // }
+            if((pHour>pSecond)&&(nHour<=((nSecond<pSecond)?nSecond+360:nSecond)))
                 answer++;
-            }
-            if((pMinute>pSecond)&&(nMinute<=((nSecond<pSecond)?nSecond+360:nSecond))){
-            //     if(h1==1&&m1==5&&s1==5){
-            //     System.out.println("시간: "+(sHour+i-1)+"초와 "+(sHour+i)+"초 사이");
-            //     System.out.println("1초전 시침: "+pHour+", 1초후 시침:"+nHour);
-            //     System.out.println("1초전 분침: "+pMinute+", 1초후 분침:"+nMinute);
-            //     System.out.println("1초전 초침: "+pSecond+", 1초후 초침:"+nSecond+"\n");
-            // }
+            if((pMinute>pSecond)&&(nMinute<=((nSecond<pSecond)?nSecond+360:nSecond)))
                 answer++;
-            }
             if((pHour>pMinute)&&(pMinute>pSecond)&&(nHour<=((nMinute<pMinute)?nMinute+360:nMinute))&&(nMinute<=((nSecond<pSecond)?nSecond+360:nSecond))){
-            //     if(h1==1&&m1==5&&s1==5){
-            //     System.out.println("시간: "+(sHour+i-1)+"초와 "+(sHour+i)+"초 사이");
-            //     System.out.println("1초전 시침: "+pHour+", 1초후 시침:"+nHour);
-            //     System.out.println("1초전 분침: "+pMinute+", 1초후 분침:"+nMinute);
-            //     System.out.println("1초전 초침: "+pSecond+", 1초후 초침:"+nSecond+"\n");
-            // }
                 answer--;
             }
             pHour=nHour;
             pMinute=nMinute;
             pSecond=nSecond;
         }
-        
-        //시침이 1초에 이동하는 각도: 1/120
-        //분침이 1초에 이동하는 각도: 1/10
-        //초침이 1초에 이동하는 각도: 6
-        
-        
-        
         
         return answer;
     }
