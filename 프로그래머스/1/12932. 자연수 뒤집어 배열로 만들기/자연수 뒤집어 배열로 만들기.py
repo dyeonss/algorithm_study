@@ -1,8 +1,9 @@
 def solution(n):
     answer=[]
-    li=list(reversed(str(n)))
     
-    for i in li:
+    for i in str(n):
         answer.append(int(i))
         
+    answer.reverse()
+    
     return answer
