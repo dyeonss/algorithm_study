@@ -1,6 +1,3 @@
 def solution(n):
-    li=list(str(n))
-    li.sort()
-    li.reverse()
-    
-    return int(''.join(li))
+    answer = 0
+    return int(''.join(reversed(sorted(str(n)))))
