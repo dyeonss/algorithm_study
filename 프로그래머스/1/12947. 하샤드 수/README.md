@@ -1,6 +1,6 @@
 # [level 1] 하샤드 수 - 12947 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12947?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12947) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 08월 19일 19:39:23
+2024년 08월 19일 19:52:07
 
 ### 문제 설명
 

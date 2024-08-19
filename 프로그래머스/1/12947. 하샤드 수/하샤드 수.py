@@ -1,4 +1,4 @@
 def solution(x):
-    if x%sum(int(i) for i in str(x))==0:
+    if x%sum(list(map(int,str(x))))==0:
         return True
     return False
