@@ -1,32 +1,30 @@
 def solution(friends, gifts):
-    answer = 0
-    next_month={}
-    # 선물지수용
-    give={} 
-    take={}
-    board={}
+    friends_idx={}
+    n=len(friends)
     
-    for f1 in friends:
-        give[f1]=0
-        take[f1]=0
-        next_month[f1]=0
-        board[f1]={}
-        for f2 in friends:
-            board[f1][f2]=0;
-            
-    for g in gifts:
-        l=g.split(" ")
-        give[l[0]]+=1
-        take[l[1]]+=1
-        board[l[0]][l[1]]+=1;
+    for i in range(n):
+        friends_idx[friends[i]]=i
 
-    for g in friends:
-        for t in board[g]:
-            if board[g][t] == board[t][g]:
-                if (give[g]-take[g])!=(give[t]-take[t]):
-                    next_month[g if (give[g]-take[g])>(give[t]-take[t]) else t]+=1
-            elif board[g][t]>0 or board[t][g]>0:
-                next_month[g if board[g][t]>board[t][g] else t]+=1
-
-    answer=list(sorted(next_month.values(),reverse=True))[0]//2
-    return answer
+    table=[[0]*n for _ in range(n)]
+    gift_idx=[0]*n
+    
+    for gift in gifts:
+        g,t=gift.split()
+        g_idx=friends_idx[g]
+        t_idx=friends_idx[t]
+        table[g_idx][t_idx]+=1
+        gift_idx[g_idx]+=1
+        gift_idx[t_idx]-=1
+    
+    get_gifts=[0]*n
+    
+    for i in range(n):
+        for j in range(n):
+            if i==j:    continue
+            if table[i][j]==table[j][i]:
+                if gift_idx[i]>gift_idx[j]:
+                    get_gifts[i]+=1
+            elif table[i][j]>table[j][i]:
+                get_gifts[i]+=1
+                
+    return max(get_gifts)
