@@ -8,6 +8,6 @@ def solution(players, callings):
         prev=running[c]
         running[c]=prev-1
         running[players[prev-1]]=prev
-        players[prev]=players[prev-1]
-        players[prev-1]=c
+        players[prev],players[prev-1]=players[prev-1],c
+
     return players
