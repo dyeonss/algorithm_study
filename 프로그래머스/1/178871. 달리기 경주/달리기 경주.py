@@ -1,5 +1,5 @@
 def solution(players, callings):
-    running={}
+    running={} 
     
     for idx, player in enumerate(players):
         running[player]=idx
@@ -10,5 +10,4 @@ def solution(players, callings):
         running[players[prev-1]]=prev
         players[prev]=players[prev-1]
         players[prev-1]=c
-        
     return players
