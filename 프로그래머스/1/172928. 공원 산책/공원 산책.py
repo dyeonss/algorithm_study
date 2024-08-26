@@ -2,6 +2,7 @@ def solution(park, routes):
     nr,nc=0,0
     dr=[0,0,1,-1]
     dc=[1,-1,0,0]
+    way={'E':0,'W':1,'S':2,'N':3}
     
     for i in range(len(park)):
         idx=park[i].find('S')
@@ -10,30 +11,18 @@ def solution(park, routes):
             break
 
     for r in routes:
-        way, dist=r.split()
-        dir=0
-        if way=='E':
-            dir=0
-        elif way=='W':
-            dir=1
-        elif way=='S':
-            dir=2
-        else:
-            dir=3
-        
+        w, dist=r.split()
+        dir_=way[w]
         tr,tc=nr,nc
         success=True
         
-        for i in range(int(dist)):
-            tr+=dr[dir]
-            tc+=dc[dir]
-            if tr<0 or tr>len(park)-1 or tc<0 or tc>len(park[0])-1:
+        for i in range(1,int(dist)+1):
+            tr,tc=nr+dr[dir_]*i,nc+dc[dir_]*i
+
+            if not(0<=tr<=len(park)-1 and 0<=tc<=len(park[0])-1 and park[tr][tc]!='X'):
                 success=False
                 break
-            if park[tr][tc]=='X':
-                success=False
-                break
-        
+                
         if success:
             nr,nc=tr,tc
         
