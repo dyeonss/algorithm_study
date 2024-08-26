@@ -37,5 +37,4 @@ def solution(park, routes):
         if success:
             nr,nc=tr,tc
         
-    return [nr,nc]
-            
+    return [nr,nc]      
