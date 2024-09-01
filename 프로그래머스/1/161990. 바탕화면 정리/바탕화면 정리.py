@@ -1,8 +1,7 @@
-import sys
 def solution(wallpaper):
     answer = []
-    lux,luy=sys.maxsize,sys.maxsize
-    rdx,rdy=-sys.maxsize,-sys.maxsize
+    lux,luy=49,49
+    rdx,rdy=0,0
     
     for i in range(len(wallpaper)):
         for j in range(len(wallpaper[i])):
