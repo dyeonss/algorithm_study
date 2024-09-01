@@ -1,6 +1,6 @@
 def solution(wallpaper):
     answer = []
-    rdx,rdy,lux,luy=0,0,49,49
+    rdx,rdy,lux,luy=-1,-1,51,51
     
     for i in range(len(wallpaper)):
         for j in range(len(wallpaper[i])):
