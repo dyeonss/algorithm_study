@@ -1,7 +1,7 @@
 def solution(new_id):
     answer = ''
-    
     new_id=new_id.lower()
+    
     for w in new_id:
         if w.isalnum() or w in '-_.':
             answer+=w
@@ -9,10 +9,8 @@ def solution(new_id):
     while '..' in answer:
         answer=answer.replace('..','.')
 
-    if len(answer)>0 and answer[0]=='.':
-        answer=answer[1:]
-    if len(answer)>0 and answer[-1]=='.':
-        answer=answer[:-1]
+    if len(answer)>0 and answer[0]=='.':    answer=answer[1:]
+    if len(answer)>0 and answer[-1]=='.':   answer=answer[:-1]
     
     if len(answer)==0:
         answer='a'
@@ -21,7 +19,7 @@ def solution(new_id):
         if answer[-1]=='.':
             answer=answer[:-1]
     
-    while len(answer)<3:
-        answer+=answer[-1]
+    if len(answer)<3:
+        answer+=answer[-1]*(3-len(answer))
 
     return answer
