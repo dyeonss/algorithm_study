@@ -1,16 +1,23 @@
 def solution(board, moves):
-    nrow, ncol = len(board), len(board[0])
-    answer = []
-    counts = 0
-    for m in moves:
-        for i in range(nrow):
-            if board[i][m-1]:
-                answer.append(board[i][m-1])
-                board[i][m-1] = 0
+    answer = 0
+    basket=[]
+    loc=[len(board)]*len(board)
+
+    for c in range(len(board)):
+        for r in range(len(board)):
+            if board[r][c]!=0:
+                loc[c]=r
                 break
-        
-        if len(answer) > 1:
-            if answer[-2] == answer[-1]:
-                answer = answer[:-2]
-                counts += 2
-    return counts
+
+    for move in moves:
+        if loc[move-1]>=len(board):
+            continue
+        elif board[loc[move-1]][move-1]!=0:
+            if len(basket)>0 and basket[-1]==board[loc[move-1]][move-1]:
+                basket.pop()
+                answer+=2
+            else:
+                basket.append(board[loc[move-1]][move-1])
+            loc[move-1]+=1
+
+    return answer
