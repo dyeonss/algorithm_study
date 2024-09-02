@@ -13,8 +13,6 @@ def solution(numbers, hand):
         else:
             lmv=abs((l+1 if l in [1,4,7,10] else l)-n)//3+(1 if l in[1,4,7,10] else 0)
             rmv=abs((r-1 if r in [3,6,9,12] else r)-n)//3+(1 if r in[3,6,9,12] else 0)
-            # print("l:",l,"r:",r,"n:",n)
-            # print("lmv:",lmv,"rmv:",rmv)
             if lmv==rmv: 
                 if hand=='right':
                     answer+='R'
