@@ -2,11 +2,11 @@ def solution(survey, choices):
     answer = ''
     scores={'R':0,'T':0,'C':0,'F':0,'J':0,'M':0,'A':0,'N':0}
     
-    for i in range(len(choices)):
-        if choices[i]>=5:
-            scores[survey[i][1]]+=choices[i]-4
-        elif choices[i]<=3:
-            scores[survey[i][0]]+=4-choices[i]
+    for s,c in zip(survey,choices):
+        if c>=5:
+            scores[s[1]]+=c-4
+        elif c<=3:
+            scores[s[0]]+=4-c
     
     personal=list(scores)
     
