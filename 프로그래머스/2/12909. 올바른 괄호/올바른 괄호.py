@@ -2,8 +2,11 @@ def solution(s):
     stack=[]
     
     for b in s:
-        if b==')' and len(stack)>0 and stack[-1]=='(':
-            stack.pop()
+        if b==')':
+            if len(stack)==0:
+                return False
+            else:
+                stack.pop()
         else:
             stack.append(b)
     
