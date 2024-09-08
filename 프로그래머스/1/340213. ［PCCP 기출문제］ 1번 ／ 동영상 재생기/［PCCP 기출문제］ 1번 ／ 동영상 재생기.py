@@ -15,6 +15,6 @@ def solution(video_len, pos, op_start, op_end, commands):
         if op_start<=pos<=op_end:
             pos=op_end
     
-    mm=str(pos//60)
-    ss=str(pos%60)
-    return ('0'+mm if len(mm)==1 else mm)+':'+('0'+ss if len(ss)==1 else ss)
+    m=str(pos//60)
+    s=str(pos%60)
+    return ('0'+m if len(m)==1 else m)+':'+('0'+s if len(s)==1 else s)
