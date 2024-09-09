@@ -5,5 +5,4 @@ def solution(n):
     for i in range(6,n+1):
         fibo.append((fibo[i-2]+fibo[i-1]))
     
-    print(fibo[:10])
     return fibo[n]%1234567
