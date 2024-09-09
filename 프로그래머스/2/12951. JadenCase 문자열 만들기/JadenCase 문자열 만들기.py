@@ -1,13 +1,7 @@
 def solution(s):
-    answer = ''
-    words=s.split()
-    pos=0
+    words=s.split(' ')
     
-    for word in words:
-        pos+=len(word)
-        answer+=word[0].upper()+word[1:].lower()
-        while pos<len(s) and s[pos]==' ':
-            answer+=' '
-            pos+=1
-            
-    return answer
+    for i in range(len(words)):
+        words[i]=words[i].capitalize()
+        
+    return ' '.join(words)
