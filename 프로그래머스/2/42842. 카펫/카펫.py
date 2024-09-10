@@ -1,10 +1,9 @@
 def solution(brown, yellow):
-    w,h=brown//2-1,3
+    x,y=(brown-4)//2-1,1
     
     while True:
-        if w*h-brown==yellow:
+        if x*y==yellow:
             break
-        w-=1
-        h+=1
+        x,y=x-1,y+1
         
-    return [w,h]
+    return [x+2,y+2]
