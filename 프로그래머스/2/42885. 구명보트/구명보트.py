@@ -3,9 +3,7 @@ def solution(people, limit):
     start,end=0,len(people)-1
     people.sort()
     
-    while True:
-        if end<start:
-            break
+    while end>=start:
         if people[start]+people[end]<=limit:
             answer+=1
             start,end=start+1,end-1
