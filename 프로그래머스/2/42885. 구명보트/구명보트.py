@@ -4,7 +4,7 @@ def solution(people, limit):
     people.sort()
     
     while end>=start:
-        if people[start]+people[end]<=limit:
+        if start!=end and people[start]+people[end]<=limit:
             answer+=1
             start,end=start+1,end-1
         else:
