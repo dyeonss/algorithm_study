@@ -5,10 +5,8 @@ def solution(people, limit):
     
     while end>=start:
         if start!=end and people[start]+people[end]<=limit:
-            answer+=1
-            start,end=start+1,end-1
-        else:
-            answer+=1
-            end-=1
+            start+=1
+        answer+=1
+        end-=1
             
     return answer
