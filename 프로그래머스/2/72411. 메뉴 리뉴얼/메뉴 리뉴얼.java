@@ -1,41 +1,39 @@
 import java.util.*;
 class Solution {
-    public static HashMap<String, Integer> map;
+    static HashMap<String,Integer> map;
     public String[] solution(String[] orders, int[] course) {
-        ArrayList<String> answer = new ArrayList<>();
+        ArrayList<String> answer=new ArrayList<>();
         
         for(int i=0;i<course.length;i++){
-            int size = course[i];
-            map = new HashMap<>();
+            map=new HashMap<>();
             for(int j=0;j<orders.length;j++){
-                if(orders[j].length()<size) continue;
-                char[] ch = orders[j].toCharArray();
-                Arrays.sort(ch);
-                select(new String(ch),size,"",0,0);
+                if(orders[j].length()<course[i])   continue;
+                String[] menus=orders[j].split("");
+                Arrays.sort(menus);
+                combi(0,0,course[i],"",menus);
             }
-            if(map.size()==0)   continue;
+            ArrayList<String> list=new ArrayList<>(map.keySet());
+            list.sort((o1,o2)->map.get(o2)-map.get(o1));
             
-            ArrayList<String> arr = new ArrayList<>(map.keySet());
-            arr.sort((s1,s2)->map.get(s2)-map.get(s1));
-            int max = map.get(arr.get(0));
-            if(max<2)   continue;
-            
-            for(String k:arr){
-                if(map.get(k)!=max) break;
-                answer.add(k);
+            if(list.size()>0){
+                int max=map.get(list.get(0));
+                if(max<2)   continue;
+                for(int k=0;k<list.size();k++){
+                    if(map.get(list.get(k))!=max)   break;
+                    answer.add(list.get(k));
+                }
             }
         }
-        String[] result = answer.toArray(new String[answer.size()]);
-        Arrays.sort(result);
-        return result;
+        Collections.sort(answer);
+        return answer.toArray(new String[answer.size()]);
     }
-    public void select(String order, int size, String menu, int cnt, int start){
+    public void combi(int start,int cnt,int size,String s,String[] menus){
         if(cnt==size){
-            map.put(menu, map.getOrDefault(menu,0)+1);
+            map.put(s,map.getOrDefault(s,0)+1);
             return;
         }
-        for(int i=start;i<order.length();i++){
-            select(order,size,menu+order.substring(i,i+1),cnt+1,i+1);
+        for(int i=start;i<menus.length;i++){
+            combi(i+1,cnt+1,size,s+menus[i],menus);
         }
     }
 }
