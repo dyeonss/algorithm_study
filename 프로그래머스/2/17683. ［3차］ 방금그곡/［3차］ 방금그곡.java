@@ -1,18 +1,9 @@
 import java.util.*;
 class Solution {
-    class Music{
-        int n,playTime;
-        String name;
-        public Music(int n,int playTime,String name){
-            this.n=n;
-            this.playTime=playTime;
-            this.name=name;
-        }
-    }
     public String solution(String m, String[] musicinfos) {
         String answer = "";
-        ArrayList<Music> list=new ArrayList<>();
         m=replace(m);
+        int max=0;
         
         for(int i=0;i<musicinfos.length;i++){
             String[] arr=musicinfos[i].split(",");
@@ -22,12 +13,13 @@ class Solution {
             String s="";
             for(int j=0;j<time+1;j++)
                 s+=String.valueOf(ch[j%ch.length]);
-            if(s.contains(m))   list.add(new Music(i,time,arr[2]));
+            if(s.contains(m)&&time>max){
+                max=time;
+                answer=arr[2];
+            }
         }
-        list.sort((o1,o2)->{if(o2.playTime==o1.playTime)    return o1.n-o2.n;
-                            else    return o2.playTime-o1.playTime;});
         
-        return list.size()>0?list.get(0).name:"(None)";
+        return answer==""?"(None)":answer;
     }
     public String replace(String s){
         s=s.replace("A#","H");
