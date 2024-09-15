@@ -10,12 +10,14 @@ class Solution {
             int time=(Integer.valueOf(arr[1].substring(0,2))*60+Integer.valueOf(arr[1].substring(3)))-
                 (Integer.valueOf(arr[0].substring(0,2))*60+Integer.valueOf(arr[0].substring(3)));
             char[] ch=replace(arr[3]).toCharArray();
-            String s="";
-            for(int j=0;j<time+1;j++)
-                s+=String.valueOf(ch[j%ch.length]);
-            if(s.contains(m)&&time>max){
-                max=time;
-                answer=arr[2];
+            
+            if(time>max){
+                String s="";
+                for(int j=0;j<time+1;j++)   s+=String.valueOf(ch[j%ch.length]);
+                if(s.contains(m)){
+                    max=time;
+                    answer=arr[2];
+                }
             }
         }
         
