@@ -12,9 +12,9 @@ class Solution {
             char[] ch=replace(arr[3]).toCharArray();
             
             if(time>max){
-                String s="";
-                for(int j=0;j<time+1;j++)   s+=String.valueOf(ch[j%ch.length]);
-                if(s.contains(m)){
+                StringBuilder sb=new StringBuilder();
+                for(int j=0;j<time+1;j++)   sb.append(String.valueOf(ch[j%ch.length]));
+                if(sb.toString().contains(m)){
                     max=time;
                     answer=arr[2];
                 }
