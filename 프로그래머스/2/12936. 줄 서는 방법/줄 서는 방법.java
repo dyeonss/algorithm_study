@@ -2,22 +2,22 @@ import java.util.*;
 class Solution {
     public int[] solution(int n, long k) {
         int[] answer = new int[n];
-        ArrayList<Integer> nums=new ArrayList<>();
-        long total=1;
-        k--;
+        ArrayList<Integer> list=new ArrayList<>();
+        long fact=1;
+        int idx=0;
         
         for(int i=1;i<=n;i++){
-            nums.add(i);
-            total*=i;
+            list.add(i);
+            fact*=i;
         }
         
-        for(int i=0;n>0;i++){
-            total/=n;
-            answer[i]=nums.get((int)(k/total));
-            nums.remove((int)(k/total));
-            k=k%total;
+        while(fact!=1){
+            answer[idx]=list.remove((int)((k-1)/(fact/n)%n));
+            fact/=n;
             n--;
+            idx++;
         }
+        answer[idx]=list.remove(0);
         return answer;
     }
 }
