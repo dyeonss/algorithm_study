@@ -14,25 +14,21 @@ class Solution {
                 }
             }
         
-            for(int j=0;j<list.size()-1;j++){
-                for(int k=j+1;k<list.size();k++){
+            for(int j=0;j<list.size()-1&&answer[i]==1;j++){
+                for(int k=j+1;k<list.size()&&answer[i]==1;k++){
                     int[] p1=list.get(j);
                     int[] p2=list.get(k);
                     int d=Math.abs(p1[0]-p2[0])+Math.abs(p1[1]-p2[1]);
                     if(d==2){
                         //같은 행에 존재할 때
                         if(p1[0]==p2[0]){
-                            if(places[i][p1[0]].charAt((p1[1]+p2[1])/2)=='O'){
+                            if(places[i][p1[0]].charAt((p1[1]+p2[1])/2)=='O')
                                 answer[i]=0;
-                                break;
-                            }
                         }
                         //같은 열에 존재할 때
                         else if(p1[1]==p2[1]){
-                            if(places[i][(p1[0]+p2[0])/2].charAt(p1[1])=='O'){
+                            if(places[i][(p1[0]+p2[0])/2].charAt(p1[1])=='O')
                                 answer[i]=0;
-                                break;
-                            }
                         }
                         //다른 행,열에 존재할 때
                         else{
@@ -40,20 +36,14 @@ class Solution {
                             int sc=Math.min(p1[1],p2[1]), ec=Math.max(p1[1],p2[1]);
                             for(int r=sr;r<=er;r++)
                                 for(int c=sc;c<=ec;c++){
-                                    if(places[i][r].charAt(c)=='O'){
+                                    if(places[i][r].charAt(c)=='O')
                                         answer[i]=0;
-                                        break;
-                                    }
                                 }
-                                if(answer[i]==0)    break;
                         }
                     }
-                    else if(d==1){
-                        answer[i]=0;
-                        break;
-                    }   
+                    else if(d==1)
+                        answer[i]=0;                   
                 }
-                if(answer[i]==0)    break;
             }
         }
         return answer;
