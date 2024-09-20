@@ -1,8 +1,8 @@
-select flavor
-  from (select sum(j.total_order+f.total_order) as sum, j.flavor as flavor
-  from july j, first_half f
- where j.flavor = f.flavor
- group by j.flavor
- order by sum desc
-        )
- where rownum<=3
+SELECT H.FLAVOR
+  FROM FIRST_HALF H
+  JOIN (SELECT SUM(TOTAL_ORDER) AS SUM, FLAVOR
+          FROM JULY
+         GROUP BY FLAVOR) J
+    ON H.FLAVOR=J.FLAVOR
+ ORDER BY H.TOTAL_ORDER+J.SUM DESC
+ LIMIT 3
