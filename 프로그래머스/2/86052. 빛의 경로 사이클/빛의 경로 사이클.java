@@ -3,9 +3,7 @@ class Solution {
     public int[] solution(String[] grid) {
         ArrayList<Integer> answer=new ArrayList<>();
         boolean[][][] visited=new boolean[grid.length][grid[0].length()][4];
-        int[] dr_l={0,-1,0,1}, dc_l={1,0,-1,0};
-        int[] dr_r={0,1,0,-1}, dc_r={-1,0,1,0};
-        int[] dr_s={1,0,-1,0}, dc_s={0,1,0,-1};
+        int[] dr={1,0,-1,0}, dc={0,1,0,-1};
         
         for(int i=0;i<visited.length;i++){
             for(int j=0;j<visited[0].length;j++){
@@ -15,25 +13,14 @@ class Solution {
                         int r=i,c=j,d=k;
                         visited[i][j][k]=true;
                         while(true){
-                            if(grid[r].charAt(c)=='L'){
-                                r+=dr_l[d];
-                                c+=dc_l[d];
+                            if(grid[r].charAt(c)=='L')
                                 d=(d+1)%4;
-                            }
-                            else if(grid[r].charAt(c)=='R'){
-                                r+=dr_r[d];
-                                c+=dc_r[d];
+                            
+                            else if(grid[r].charAt(c)=='R')
                                 d=(d+3)%4;
-                            }
-                            else{
-                                r+=dr_s[d];
-                                c+=dc_s[d];
-                            }
-                            if(r<0) r=visited.length-1;
-                            if(r>=visited.length)   r=0;
-                            if(c<0) c=visited[0].length-1;
-                            if(c>=visited[0].length)    c=0;
-    
+                            
+                            r=(visited.length+r+dr[d])%visited.length;
+                            c=(visited[0].length+c+dc[d])%visited[0].length;
                             visited[r][c][d]=true;
                             len++;
                             if(r==i&&c==j&&d==k)  break;
