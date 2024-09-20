@@ -1,59 +1,49 @@
 import java.util.*;
 class Solution {
-    static int nr, nc, dir;
-    static int[] dr={1,0,-1,0};
-    static int[] dc={0,-1,0,1};    //아래, 왼, 위, 오른
-    static int r,c;
     public int[] solution(String[] grid) {
-        int[] answer = {};
-        ArrayList<Integer> list=new ArrayList<>();
-        r=grid.length;
-        c=grid[0].length();
-        char[][] board=new char[r][c];
-        int[] dr={1,0,-1,0};
-        int[] dc={0,-1,0,1};    //아래, 왼, 위, 오른
-        boolean[][][] visited=new boolean[r][c][4];
+        ArrayList<Integer> answer=new ArrayList<>();
+        boolean[][][] visited=new boolean[grid.length][grid[0].length()][4];
+        int[] dr_l={0,-1,0,1}, dc_l={1,0,-1,0};
+        int[] dr_r={0,1,0,-1}, dc_r={-1,0,1,0};
+        int[] dr_s={1,0,-1,0}, dc_s={0,1,0,-1};
         
-        for(int i=0;i<grid.length;i++)  board[i]=grid[i].toCharArray();
-         
-        for(int i=0;i<r;i++){
-            for(int j=0;j<c;j++){
-                for(int k=0;k<4;k++){
+        for(int i=0;i<visited.length;i++){
+            for(int j=0;j<visited[0].length;j++){
+                for(int k=0;k<4;k++){   //아래 오 위 왼
                     if(!visited[i][j][k]){
-                        int size=0;
-                        nr=i;
-                        nc=j;
-                        dir=k;  //현재 방향(아래, 왼, 위, 오른)
-
+                        int len=0;
+                        int r=i,c=j,d=k;
+                        visited[i][j][k]=true;
                         while(true){
-                            if(visited[nr][nc][dir]){
-                                list.add(size);
-                                break;
+                            if(grid[r].charAt(c)=='L'){
+                                r+=dr_l[d];
+                                c+=dc_l[d];
+                                d=(d+1)%4;
                             }
-                         
-                            visited[nr][nc][dir]=true;
-                            move(board);
-                            size++;
+                            else if(grid[r].charAt(c)=='R'){
+                                r+=dr_r[d];
+                                c+=dc_r[d];
+                                d=(d+3)%4;
+                            }
+                            else{
+                                r+=dr_s[d];
+                                c+=dc_s[d];
+                            }
+                            if(r<0) r=visited.length-1;
+                            if(r>=visited.length)   r=0;
+                            if(c<0) c=visited[0].length-1;
+                            if(c>=visited[0].length)    c=0;
+    
+                            visited[r][c][d]=true;
+                            len++;
+                            if(r==i&&c==j&&d==k)  break;
                         }
+                        answer.add(len);
                     }
                 }
             }
         }
-        answer=new int[list.size()];
-        
-        for(int i=0;i<list.size();i++)  answer[i]=list.get(i);
-        Arrays.sort(answer);
-        return answer;
-    }
-    public void move(char[][] board){
-        char ch=board[nr][nc];
-        
-        if(ch=='L')
-            dir=(dir+3)%4;
-        else if(ch=='R')
-            dir=(dir+1)%4;
-        
-        nr=(r+nr+dr[dir])%r;
-        nc=(c+nc+dc[dir])%c;
+        answer.sort((o1,o2)->o1-o2);
+        return answer.stream().mapToInt(i->i).toArray();
     }
 }
