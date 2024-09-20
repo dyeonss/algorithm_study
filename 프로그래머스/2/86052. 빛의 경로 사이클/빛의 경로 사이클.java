@@ -1,7 +1,8 @@
 import java.util.*;
 class Solution {
     public int[] solution(String[] grid) {
-        ArrayList<Integer> answer=new ArrayList<>();
+        int[] answer={};
+        ArrayList<Integer> list=new ArrayList<>();
         boolean[][][] visited=new boolean[grid.length][grid[0].length()][4];
         int[] dr={1,0,-1,0}, dc={0,1,0,-1};
         
@@ -25,12 +26,16 @@ class Solution {
                             len++;
                             if(r==i&&c==j&&d==k)  break;
                         }
-                        answer.add(len);
+                        list.add(len);
                     }
                 }
             }
         }
-        answer.sort((o1,o2)->o1-o2);
-        return answer.stream().mapToInt(i->i).toArray();
+        
+        answer=new int[list.size()];
+        for(int i=0;i<list.size();i++)    answer[i]=list.get(i);
+        Arrays.sort(answer);
+        
+        return answer;
     }
 }
