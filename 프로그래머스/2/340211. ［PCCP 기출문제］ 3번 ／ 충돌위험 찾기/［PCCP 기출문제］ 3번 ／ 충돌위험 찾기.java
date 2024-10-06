@@ -36,7 +36,7 @@ class Solution {
         for(int i=0;i<max;i++){
             for(int j=0;j<n;j++){
                 if(i>list.get(j).size()-1)  
-                    map.put(String.valueOf(j),1);
+                    continue;
                 else{
                     int[] arr=list.get(j).get(i);
                     StringBuilder sb=new StringBuilder(String.valueOf(arr[0]));
