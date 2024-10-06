@@ -1,54 +1,77 @@
 import java.util.*;
 class Solution {
+    static Queue<int[]>[] memo; // 경로 기록용 
+    static int size;
+    static int answer;
     public int solution(int[][] points, int[][] routes) {
-        int answer = 0;
-        int n=routes.length, max=0;
-        ArrayList<ArrayList<int[]>> list=new ArrayList<>();
-        HashMap<String,Integer> map=new HashMap<>();
-        
-        for(int i=0;i<n;i++)
-            list.add(new ArrayList<>());
-        
-        for(int i=0;i<n;i++){
-            int size=0;
-            list.get(i).add(new int[]{points[routes[i][0]-1][0],points[routes[i][0]-1][1]});
-            size++;
-            for(int j=0;j<routes[0].length-1;j++){
-                int sr=points[routes[i][j]-1][0], sc=points[routes[i][j]-1][1];
-                int er=points[routes[i][j+1]-1][0], ec=points[routes[i][j+1]-1][1];
-            
-                while(sr!=er){
-                    if(sr<er)   sr++;
-                    else if(sr>er)  sr--;
-                    list.get(i).add(new int[]{sr,sc});
-                    size++;
-                }
-                while(sc!=ec){
-                    if(sc<ec)   sc++;
-                    else if(sc>ec)  sc--;
-                    list.get(i).add(new int[]{sr,sc});
-                    size++;
-                }
-            }
-            max=Math.max(max,size);
+        size = routes.length;
+        memo = new LinkedList[size];
+        for(int i = 0; i < size; i++){
+            memo[i] = new LinkedList<>();
         }
-        
-        for(int i=0;i<max;i++){
-            for(int j=0;j<n;j++){
-                if(i>list.get(j).size()-1)  
+        function(points, routes); // 경로 계산 
+        function2(); // 충돌 계산 
+        return answer;      
+    }
+    public static void function2(){
+        int count = 0;
+        while(count != size){
+            int [][] map = new int [101][101];
+            count = 0;
+            for(int i = 0; i < size; i++){
+                if(memo[i].isEmpty()){
+                    count++;
                     continue;
-                else{
-                    int[] arr=list.get(j).get(i);
-                    StringBuilder sb=new StringBuilder(String.valueOf(arr[0]));
-                    String s=sb.append(" ").append(String.valueOf(arr[1])).toString();
-                    map.put(s,map.getOrDefault(s,0)+1);
+                }
+                int [] temp = memo[i].poll();
+                map[temp[0]][temp[1]]++;
+            }
+            for(int i = 0; i < 101; i++){
+                for(int j = 0; j < 101; j++){
+                    if(map[i][j] > 1) answer++; // 충돌!
                 }
             }
-            for(String k:map.keySet())
-                if(map.get(k)>1)    answer++;
-            
-            map.clear();
         }
-        return answer;
+    }
+    // 규칙4: 이동 우선순위 x좌표 > y좌표 
+    public static void function(int [][] points, int [][] routes){
+        for(int i = 0; i < size; i++){
+            int [] point = points[routes[i][0] - 1];
+            int x = point[0];
+            int y = point[1];
+            memo[i].add(new int[]{x, y});
+            for(int j = 1; j < routes[0].length; j++){
+                int [] next_point = points[routes[i][j] - 1];
+                int nx = next_point[0];
+                int ny = next_point[1];
+                
+                int xp = nx - x; // 다음 포인트로 이동해야하는 x좌표 
+                int yp = ny - y; // 다음 포인트로 이동해야하는 y좌표
+                while(xp != 0){
+                    if(xp > 0){
+                        xp--;
+                        x++;
+                        memo[i].add(new int[]{x, y});
+                    }
+                    else{
+                        xp++;
+                        x--;
+                        memo[i].add(new int[]{x, y});
+                    }
+                }
+                while(yp != 0){
+                    if(yp > 0){
+                        yp--;
+                        y++;
+                        memo[i].add(new int[]{x, y});
+                    }
+                    else{
+                        yp++;
+                        y--;
+                        memo[i].add(new int[]{x, y});
+                    }
+                }
+            }
+        }
     }
 }
