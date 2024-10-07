@@ -11,13 +11,13 @@ class Solution {
             
             if(startX==x){
                 distance=Math.min(d3,d4);
-                if(startY>y)    distance=Math.min(distance,(int)Math.pow(2*n-startY-y,2));
-                else if(startY<y)   distance=Math.min(distance,(int)Math.pow(startY+y,2));
+                if(startY>y)    distance=Math.min(distance,d1);
+                else if(startY<y)   distance=Math.min(distance,d2);
             }
             else if(startY==y){
                 distance=Math.min(d1,d2);
-                if(startX>x)    distance=Math.min(distance,(int)Math.pow(2*m-startX-x,2));
-                else if(startX<x)   distance=Math.min(distance,(int)Math.pow(startX+x,2));
+                if(startX>x)    distance=Math.min(distance,d4);
+                else if(startX<x)   distance=Math.min(distance,d3);
             }
             else
                 distance=Math.min(Math.min(d1,d2),Math.min(d3,d4));
