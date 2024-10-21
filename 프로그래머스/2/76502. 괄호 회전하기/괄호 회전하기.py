@@ -1,17 +1,20 @@
+from collections import deque
 def solution(s):
     answer = 0
-    for _ in range(len(s)):
-        stack=[]
-        for i in range(len(s)):
+    q=deque(s)
+    
+    for _ in range(len(q)):
+        stack=deque()
+        for i in range(len(q)):
             if len(stack)==0:
-                stack.append(s[i])
+                stack.append(q[i])
             else:
-                t,last=s[i], stack[-1]
+                t,last=q[i], stack[-1]
                 if (t==')' and last=='(') or (t=='}' and last=='{') or (t==']' and last=='['):
                     stack.pop()
                 else:
-                    stack.append(s[i])
+                    stack.append(q[i])
         if len(stack)==0:
             answer+=1
-        s=s[1:]+s[0]
+        q.append(q.popleft())
     return answer
